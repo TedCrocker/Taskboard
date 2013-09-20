@@ -4,3 +4,62 @@
 }
 
 <h2>Index</h2>
+<div>
+	<input type="text" id="message"/>
+	<input type="button" id="sendmessage" value="Send"/>
+	<input type="hidden" id="displayname"/>
+	<ul id="discussion">
+		
+	</ul>
+</div>
+
+@section scripts
+{
+	<script src="~/Scripts/jquery.signalR-1.1.3.js"></script>
+	<script src="~/signalr/hubs"></script>
+	
+	<script>
+		$(function ()
+		{
+			var chat = $.connection.chatHub;
+			chat.client.addNewMessageToPage = function(name, message)
+			{
+				$('#discussion').append("<li><strong>" + htmlEncode(name) + "</strong>: " + htmlEncode(message) + "</li>");
+			};
+
+			$('#displayname').val(prompt("Enter your name:", ""));
+			$('#message').focus();
+
+
+			var taskHub = $.connection.taskHub;
+			var task = { left: Math.floor((Math.random() * 100) + 1), top: Math.floor((Math.random() * 100) + 1), content: "Message content" };
+			var tasks = [];
+			tasks.push(task);
+
+			taskHub.client.addTask = function(model)
+			{
+				tasks.push(model);
+				$('<div/>').text(model.content)
+					.css({ left: model.left, top: model.top, "background-color": "red" })
+					.addClass('task').appendTo($('body'));
+			};
+			
+			$.connection.hub.start().done(function ()
+			{
+				$('#sendmessage').click(function ()
+				{
+					chat.server.send($('#displayname').val(), $('#message').val());
+					$('#message').val('').focus();
+					
+				});
+				taskHub.server.addTask(task);
+
+			});
+		});
+		
+		function htmlEncode(value)
+		{
+			return $('<div/>').text(value).html();
+		}
+	</script>
+}
