@@ -1,4 +1,7 @@
 /*.suo
+/*.user
 /Taskboard/*.user
 /Taskboard/bin/*
 /Taskboard/obj/*
+/Taskboard.Tests/bin/*
+/Taskboard.Tests/obj/*
