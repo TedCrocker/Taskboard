@@ -163,11 +163,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MainController.cs" />
-    <Compile Include="DataAccess\AzureTableDataSource.cs" />
-    <Compile Include="DataAccess\DataRepository.cs" />
+    <Compile Include="DataAccess\AzureTableRepository.cs" />
     <Compile Include="DataAccess\ElasticTableItem.cs" />
-    <Compile Include="DataAccess\IDataSource.cs" />
-    <Compile Include="DataAccess\IEntity.cs" />
+    <Compile Include="DataAccess\IDataRepository.cs" />
+    <Compile Include="DataAccess\Entity.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

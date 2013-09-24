@@ -9,7 +9,6 @@ namespace Taskboard.DataAccess
 {
 	public class ElasticTableItem : DynamicObject, ITableEntity
 	{
-
 		public ElasticTableItem()
 		{
 			Properties = new Dictionary<string, EntityProperty>();

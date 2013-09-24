@@ -9,14 +9,14 @@ namespace Taskboard.Tests
 		[Test]
 		public void CanBuildRepository()
 		{
-			var repo = new DataRepository(new AzureTableDataSource());
+			var repo = new AzureTableRepository<TaskItem, int>();
 		}
 
 		[Test]
 		public void CanAddEntity()
 		{
 			var task = new TaskItem(){ Id = 1};
-			var repo = new DataRepository(new AzureTableDataSource());
+			var repo = new AzureTableRepository<TaskItem, int>();
 			repo.Add(task);
 
 		}
