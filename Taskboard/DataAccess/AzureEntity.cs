@@ -11,9 +11,10 @@ namespace Taskboard.DataAccess
 
 		public void ReadEntity(IDictionary<string, EntityProperty> properties, OperationContext operationContext)
 		{
+			var type = GetType();
 			foreach (var keyValue in properties)
 			{
-				//SetValue(keyValue.Key, keyValue.Value);
+				type.GetProperty(keyValue.Key).SetValue(this, GetEntityPropertyValue(keyValue.Value), null);
 			}
 		}
 		

@@ -26,10 +26,18 @@ namespace Taskboard.Tests
 		[Test]
 		public void AzureEntityGetValueTest()
 		{
-			var azureEntity = new TaskItem() { Id = 1, Content = "Content", Left = 2, Top = 3 };
+			var taskItem = new TaskItem() { Id = 1, Content = "Content", Left = 2, Top = 3 };
 			
-			var props = azureEntity.WriteEntity(new OperationContext());
+			var props = taskItem.WriteEntity(new OperationContext());
 			Assert.That(props.Count(), Is.EqualTo(4));
+
+			var newTask = new TaskItem();
+			newTask.ReadEntity(props, new OperationContext());
+
+			Assert.That(newTask.Id, Is.EqualTo(taskItem.Id));
+			Assert.That(newTask.Content, Is.EqualTo(taskItem.Content));
+			Assert.That(newTask.Left, Is.EqualTo(taskItem.Left));
+			Assert.That(newTask.Top, Is.EqualTo(taskItem.Top));
 		}
 	}
 }
