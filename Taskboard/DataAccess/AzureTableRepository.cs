@@ -7,22 +7,17 @@ using Newtonsoft.Json;
 
 namespace Taskboard.DataAccess
 {
-	public class AzureEntity<T> : Entity<T>
-	{
-		
-	}
-
 	public class AzureTableRepository<T, K> : IDataRepository<T, K> where T : class
 	{
 		private CloudTable _table;
 
-		//public AzureTableDataSource(string connectionString = "UseDevelopmentStorage=true")
-		//{
-		//	var storageAccount = CloudStorageAccount.Parse(connectionString);
-		//	var client = storageAccount.CreateCloudTableClient();
-		//	_table = client.GetTableReference("Tasks");
-		//	_table.CreateIfNotExists();
-		//}
+		public AzureTableRepository(string connectionString = "UseDevelopmentStorage=true")
+		{
+			var storageAccount = CloudStorageAccount.Parse(connectionString);
+			var client = storageAccount.CreateCloudTableClient();
+			_table = client.GetTableReference("Tasks");
+			_table.CreateIfNotExists();
+		}
 
 		//public IEntity Add(int id, IEntity entity)
 		//{
@@ -32,7 +27,7 @@ namespace Taskboard.DataAccess
 
 		//	item.RowKey = item.ID.ToString();
 		//	item.PartitionKey = "Yar";
-			
+
 		//	_table.Execute(TableOperation.Insert(item));
 		//	return entity;
 		//}
@@ -53,7 +48,7 @@ namespace Taskboard.DataAccess
 		//}
 		public void Add(T entity)
 		{
-			throw new NotImplementedException();
+			//dynamic item =
 		}
 
 		public void Delete(T entity)

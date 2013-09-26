@@ -3,7 +3,7 @@ using Taskboard.DataAccess;
 
 namespace Taskboard.Models
 {
-	public class TaskItem : Entity<int>
+	public class TaskItem : AzureEntity
 	{
 		[JsonProperty("top")]
 		public int Top { get; set; }
