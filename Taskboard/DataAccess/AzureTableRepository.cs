@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Taskboard.DataAccess
 {
-	public class AzureTableRepository<T, K> : IDataRepository<T, K> where T : class
+	public class AzureTableRepository<T> : IDataRepository<T> where T : ITableEntity
 	{
 		private CloudTable _table;
 
@@ -19,46 +19,29 @@ namespace Taskboard.DataAccess
 			_table.CreateIfNotExists();
 		}
 
-		//public IEntity Add(int id, IEntity entity)
-		//{
-		//	dynamic item = new ElasticTableItem();
-		//	item.Document = JsonConvert.SerializeObject(entity);
-		//	item.EntityType = entity.GetType().Name;
-
-		//	item.RowKey = item.ID.ToString();
-		//	item.PartitionKey = "Yar";
-
-		//	_table.Execute(TableOperation.Insert(item));
-		//	return entity;
-		//}
-
-		//public IEntity Update(int id, IEntity entity)
-		//{
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public IEntity Fetch(int id)
-		//{
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public void Delete(int id)
-		//{
-		//	throw new System.NotImplementedException();
-		//}
 		public void Add(T entity)
 		{
-			//dynamic item =
+			_table.Execute(TableOperation.Insert(entity));
 		}
 
 		public void Delete(T entity)
 		{
-			throw new NotImplementedException();
+			_table.Execute(TableOperation.Delete(entity));
 		}
 
-		public T Get(K id)
+		public T Get(int id)
 		{
-			throw new NotImplementedException();
+			var type = typeof (T);
+			var result = _table.Execute(TableOperation.Retrieve<T>(type.Name, id.ToString()));
+
+			T returnValue = default(T);
+
+			if (result.HttpStatusCode == 200)
+			{
+				returnValue = (T)Convert.ChangeType(result.Result, type);
+			}
+
+			return returnValue;
 		}
 
 		public void Update(T entity)
