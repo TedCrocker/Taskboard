@@ -63,5 +63,18 @@ namespace Taskboard.Tests
 			Assert.That(newTask.Left, Is.EqualTo(taskItem.Left));
 			Assert.That(newTask.Top, Is.EqualTo(taskItem.Top));
 		}
+
+		[Test]
+		public void CanGetMultipleValuesOfTheSameType()
+		{
+			var repo = new AzureTableRepository<TaskItem>();
+			repo.Add(new TaskItem(){ Id = 1});
+			repo.Add(new TaskItem(){Id = 2, Left = 4});
+			repo.Add(new TaskItem(){Id = 3});
+
+			var fetched = repo.GetWhere(t => t.Left == 4);
+			Assert.That(fetched.Count(), Is.EqualTo(1));
+			Assert.That(fetched.First().Id, Is.EqualTo(2));
+		}
 	}
 }

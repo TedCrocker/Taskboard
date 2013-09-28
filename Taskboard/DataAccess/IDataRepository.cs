@@ -10,6 +10,6 @@ namespace Taskboard.DataAccess
 		void Delete(T entity);
 		T Get(int id);
 		void Update(T entity);
-		IList<T> GetWhere(Expression<Func<T, bool>> whereCondition);
+		IList<T> GetWhere(Func<T, bool> whereCondition);
 	}
 }

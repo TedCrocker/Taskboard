@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -49,9 +50,24 @@ namespace Taskboard.DataAccess
 			throw new NotImplementedException();
 		}
 
-		public IList<T> GetWhere(Expression<Func<T, bool>> whereCondition)
+		public IList<T> GetWhere(Func<T, bool> whereCondition)
 		{
-			throw new NotImplementedException();
+			var query = new TableQuery().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, typeof (T).Name));
+			EntityResolver<T> resolver = (pk, rk, ts, props, etag) =>
+				{
+					var item = Activator.CreateInstance<T>();
+
+					item.ETag = etag;
+					item.PartitionKey = pk;
+					item.RowKey = rk;
+					item.Timestamp = ts;
+					item.ReadEntity(props, null);
+
+					return item;
+				};
+			
+			var queryResults = _table.ExecuteQuery(query, resolver, null, null).ToList<T>();
+			return queryResults.Where(whereCondition).ToList();
 		}
 	}
 }
