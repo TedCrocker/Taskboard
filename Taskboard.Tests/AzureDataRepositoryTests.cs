@@ -65,6 +65,19 @@ namespace Taskboard.Tests
 		}
 
 		[Test]
+		public void CanUpdateAzureEntityItem()
+		{
+			var taskItem = new TaskItem() {Id = 1, Left = 23};
+			var repo = new AzureTableRepository<TaskItem>();
+			repo.Add(taskItem);
+			taskItem.Left = 46;
+			repo.Update(taskItem);
+			var fetched = repo.Get(1);
+
+			Assert.That(fetched.Left, Is.EqualTo(taskItem.Left));
+		}
+
+		[Test]
 		public void CanGetMultipleValuesOfTheSameType()
 		{
 			var repo = new AzureTableRepository<TaskItem>();

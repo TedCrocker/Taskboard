@@ -47,7 +47,7 @@ namespace Taskboard.DataAccess
 
 		public void Update(T entity)
 		{
-			throw new NotImplementedException();
+			_table.Execute(TableOperation.Merge(entity));
 		}
 
 		public IList<T> GetWhere(Func<T, bool> whereCondition)
