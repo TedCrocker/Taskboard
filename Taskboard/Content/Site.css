@@ -41,7 +41,10 @@ body {
   background-color: #AFAFAF;
   border-radius: 1em;
   height: 15em;
-  width: 30em; }
+  width: 30em;
+  position: absolute;
+  left: 0px;
+  bottom: 0px; }
   #consoleOutput #discussion,
   #consoleOutput #message {
     background-color: #4F4F4F;

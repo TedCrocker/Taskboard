@@ -3,6 +3,8 @@
 	var _output = $('#discussion');
 	var _input = $('#message');
 
+	$('#consoleOutput').draggable({ containment: "body"});
+
 	function htmlEncode(value)
 	{
 		return $('<div/>').text(value).html();
