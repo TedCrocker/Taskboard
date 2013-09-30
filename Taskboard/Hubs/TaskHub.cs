@@ -7,14 +7,10 @@ namespace Taskboard.Hubs
 
 	public class TaskHub : Hub
 	{
-		private static readonly List<TaskItem> _tasks = new List<TaskItem>();
-		
-
-		public void AddTask(TaskItem task)
+		public void AddTask()
 		{
-			_tasks.Add(task);
-
-			Clients.AllExcept(Context.ConnectionId).addTask(task);
+			var task = new TaskItem();
+			Clients.All.addTask(task);
 		}
 	}
 }

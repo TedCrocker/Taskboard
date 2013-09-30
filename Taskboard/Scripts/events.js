@@ -8,7 +8,14 @@
 
 	events.chat = {};
 	events.chat.messageReceived = "events.chat.messageReceived";
+
+	events.task = {};
+	events.task.taskAdded = "events.task.taskAdded";
+	events.task.taskReceived = "events.task.taskReceived";
+	events.task.taskDeleted = "events.task.taskDeleted";
+	events.task.taskUpdated = "events.task.taskUpdated";
 	
+
 	var _eventMappings = {};
 
 	function initEvent(eventName)

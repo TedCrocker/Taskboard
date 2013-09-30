@@ -12,4 +12,18 @@ body
 	box-sizing: border-box;
 }
 
+
+#addTask
+{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 3em;
+	width: 3em;
+	font-size: 1.5em;
+	background-color: #4F4F4F;
+	color: white
+
+}
+
 @import "consoleWindow";

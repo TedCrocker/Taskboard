@@ -1,21 +1,22 @@
 ﻿(function (hubs, events, $)
 {
-	var taskHub = $.connection.taskHub;
+	var _taskHub = $.connection.taskHub;
+	
+	function addTask()
+	{
+		_taskHub.server.addTask();
+	}
 
 	function setupTaskHub()
 	{
-		var tasks = [];
-		taskHub.client.addTask = function (model)
+		_taskHub.client.addTask = function (model)
 		{
-			tasks.push(model);
-			$('<div/>').text(model.content)
-					.css({ left: model.left, top: model.top, "background-color": "red" })
-					.addClass('task').appendTo($('body'));
+			events.publish(events.task.taskReceived, model);
 		};
 
 		events.subscribe(events.connection.started, function (e)
 		{
-
+			events.subscribe(events.task.taskAdded, addTask);
 		});
 	}
 
