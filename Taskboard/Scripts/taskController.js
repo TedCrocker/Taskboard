@@ -9,7 +9,7 @@
 		taskDiv.css("left", event.data.left);
 		taskDiv.css("top", event.data.top);
 		taskDiv.text(event.data.content);
-
+		taskDiv.draggable({ containment: "body" });
 		_body.append(taskDiv);
 	}
 
