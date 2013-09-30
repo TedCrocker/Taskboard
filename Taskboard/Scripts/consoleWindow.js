@@ -12,6 +12,8 @@
 	{
 		var ul = $('<li/>').text(event.data.sourceName + ": " + htmlEncode(event.data.output));
 		_output.append(ul);
+
+		_output.animate({ scrollTop: _output[0].scrollHeight }, 100);
 	}
 
 	_input.on("keyup", function (e) 

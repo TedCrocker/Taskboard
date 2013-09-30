@@ -1,0 +1,33 @@
+#consoleOutput
+{
+	padding: 0.5em;
+	background-color: #AFAFAF;
+	border-radius: 1em;
+	height: 15em;
+	width: 30em;
+
+
+	#discussion,
+	#message
+	{
+		background-color: #4F4F4F;
+		width: 100%;
+		color: #EFEFEF;
+		border: 2px inset;
+		padding-left: 1em;
+	}
+
+	#discussion
+	{
+		border-top-left-radius: 1em;
+		border-top-right-radius: 1em;
+		height: 12.5em;
+		overflow-y: scroll;
+	}
+
+	#message
+	{
+		border-bottom-left-radius: 1em;
+		border-bottom-right-radius: 1em;
+	}
+}
