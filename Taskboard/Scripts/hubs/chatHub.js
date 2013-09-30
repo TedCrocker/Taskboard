@@ -2,32 +2,24 @@
 {
 	var chatHub = $.connection.chatHub;
 
-	function htmlEncode(value)
-	{
-		return $('<div/>').text(value).html();
-	}
-
 	function setupChatHub()
 	{
-		$('#displayname').val(prompt("Enter your name:", ""));
+		$('#displayName').val(prompt("Enter your name:", ""));
 		$('#message').focus();
-
 
 		chatHub.client.addNewMessageToPage = function (name, message)
 		{
-			$('#discussion').append("<li><strong>" + htmlEncode(name) + "</strong>: " + htmlEncode(message) + "</li>");
+			events.publish(events.chat.messageReceived, { sourceName: name, output: message });
 		};
+
+		function messageSent(event)
+		{
+			chatHub.server.send(event.data.sourceName, event.data.output);
+		}
 
 		events.subscribe(events.connection.started, function (e)
 		{
-			$('#sendmessage').click(function ()
-			{
-				var displayName = $('#displayname').val();
-				var message = $('#message').val();
-
-				chatHub.server.send(displayName, message);
-				$('#message').val('').focus();
-			});
+			events.subscribe(events.console.messageEntered, messageSent);
 		});
 	}
 	
