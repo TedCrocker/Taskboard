@@ -2,6 +2,37 @@
 {
 	var _output = $('#discussion');
 	var _input = $('#message');
+	window.debugMode = true;
+	
+	if (debugMode)
+	{
+		var log = window.console.log;
+		var error = window.console.error;
+
+		function redirectConsoleOutput(sourceName, baseFunction)
+		{
+			return function()
+			{
+				var message = "";
+				for (var i = 0; i < arguments.length; i++)
+				{
+					message += arguments[i].toString();
+				}
+
+				addToOutput({
+					data: {
+						sourceName: sourceName,
+						output: message
+					}
+				});
+
+				baseFunction.apply(this, arguments);
+			};
+		}
+
+		window.console.log = redirectConsoleOutput("LOG", log);
+		window.console.error = redirectConsoleOutput("<strong>ERROR</strong>", error);
+	}
 
 	$('#consoleOutput').draggable({ containment: "body"});
 
