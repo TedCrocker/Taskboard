@@ -27,13 +27,14 @@ namespace Taskboard.DataAccess
 
 		public void Delete(T entity)
 		{
+			entity.ETag = "*";
 			_table.Execute(TableOperation.Delete(entity));
 		}
 
-		public T Get(int id)
+		public T Get(string id)
 		{
 			var type = typeof (T);
-			var result = _table.Execute(TableOperation.Retrieve<T>(type.Name, id.ToString()));
+			var result = _table.Execute(TableOperation.Retrieve<T>(type.Name, id));
 
 			T returnValue = default(T);
 

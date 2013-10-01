@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="DataAccess\AzureTableRepository.cs" />
     <Compile Include="DataAccess\ElasticTableItem.cs" />
     <Compile Include="DataAccess\IDataRepository.cs" />
+    <Compile Include="DataAccess\ShortGuid.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

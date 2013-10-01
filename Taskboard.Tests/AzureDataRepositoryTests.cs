@@ -27,7 +27,7 @@ namespace Taskboard.Tests
 		[Test]
 		public void CanAddEntity()
 		{
-			var task = new TaskItem() { Id = 1 };
+			var task = new TaskItem() { Id = "1" };
 			var repo = new AzureTableRepository<TaskItem>();
 			repo.Add(task);
 		}
@@ -35,7 +35,7 @@ namespace Taskboard.Tests
 		[Test]
 		public void CanGetEntity()
 		{
-			var task = new TaskItem() { Id = 1, Left = 2, Top = 3, Content = "Yar"};
+			var task = new TaskItem() { Id = "1", Left = 2, Top = 3, Content = "Yar"};
 			var repo = new AzureTableRepository<TaskItem>();
 			repo.Add(task);
 
@@ -50,7 +50,7 @@ namespace Taskboard.Tests
 		[Test]
 		public void AzureEntityGetValueTest()
 		{
-			var taskItem = new TaskItem() { Id = 1, Content = "Content", Left = 2, Top = 3 };
+			var taskItem = new TaskItem() { Id = "1", Content = "Content", Left = 2, Top = 3 };
 			
 			var props = taskItem.WriteEntity(new OperationContext());
 			Assert.That(props.Count(), Is.EqualTo(4));
@@ -67,12 +67,12 @@ namespace Taskboard.Tests
 		[Test]
 		public void CanUpdateAzureEntityItem()
 		{
-			var taskItem = new TaskItem() {Id = 1, Left = 23};
+			var taskItem = new TaskItem() {Id = "1", Left = 23};
 			var repo = new AzureTableRepository<TaskItem>();
 			repo.Add(taskItem);
 			taskItem.Left = 46;
 			repo.Update(taskItem);
-			var fetched = repo.Get(1);
+			var fetched = repo.Get("1");
 
 			Assert.That(fetched.Left, Is.EqualTo(taskItem.Left));
 		}
@@ -81,13 +81,13 @@ namespace Taskboard.Tests
 		public void CanGetMultipleValuesOfTheSameType()
 		{
 			var repo = new AzureTableRepository<TaskItem>();
-			repo.Add(new TaskItem(){ Id = 1});
-			repo.Add(new TaskItem(){Id = 2, Left = 4});
-			repo.Add(new TaskItem(){Id = 3});
+			repo.Add(new TaskItem(){ Id = "1"});
+			repo.Add(new TaskItem(){Id = "2", Left = 4});
+			repo.Add(new TaskItem(){Id = "3"});
 
 			var fetched = repo.GetWhere(t => t.Left == 4);
 			Assert.That(fetched.Count(), Is.EqualTo(1));
-			Assert.That(fetched.First().Id, Is.EqualTo(2));
+			Assert.That(fetched.First().Id, Is.EqualTo("2"));
 		}
 	}
 }

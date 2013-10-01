@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using Newtonsoft.Json;
 
 namespace Taskboard.DataAccess
 {
 	public class AzureEntity : ITableEntity
 	{
-		public int Id { get; set; }
+		public string Id { get; set; }
 
 		public void ReadEntity(IDictionary<string, EntityProperty> properties, OperationContext operationContext)
 		{
@@ -80,6 +81,7 @@ namespace Taskboard.DataAccess
 		}
 
 		private string _partitionKey;
+		[JsonIgnore]
 		public string PartitionKey
 		{
 			get
@@ -93,16 +95,18 @@ namespace Taskboard.DataAccess
 			set { _partitionKey = value; }
 		}
 
+		[JsonIgnore]
 		public string RowKey
 		{
-			get { return Id.ToString(); } set
+			get { return Id; } set
 			{
-				Id = Int32.Parse(value);
-				//Id = (T)Convert.ChangeType(value, typeof(T));
+				Id = value;
 			}
 		}
 
+		[JsonIgnore]
 		public DateTimeOffset Timestamp { get; set; }
+		[JsonIgnore]
 		public string ETag { get; set; }
 	}
 }

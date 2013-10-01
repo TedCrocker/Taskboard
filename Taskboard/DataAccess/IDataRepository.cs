@@ -8,7 +8,7 @@ namespace Taskboard.DataAccess
 	{
 		void Add(T entity);
 		void Delete(T entity);
-		T Get(int id);
+		T Get(string id);
 		void Update(T entity);
 		IList<T> GetWhere(Func<T, bool> whereCondition);
 	}
