@@ -62,6 +62,14 @@
 		var taskDiv = $('#task-' + event.data.Id);
 		taskDiv.remove();
 	}
+	
+	function tasksFetched(event)
+	{
+		for (var i = 0; i < event.data.length; i++)
+		{
+			taskReceived({ data: event.data[i] });
+		}
+	}
 
 	_addTaskButton.on("click", function ()
 	{
@@ -74,6 +82,7 @@
 	events.subscribe(events.task.taskReceived, taskReceived);
 	events.subscribe(events.task.taskUpdated, taskUpdated);
 	events.subscribe(events.task.taskDeleted, taskDeleted);
+	events.subscribe(events.task.fetchedAll, tasksFetched);
 
 })(	window.events = window.events || {},
 	jQuery);

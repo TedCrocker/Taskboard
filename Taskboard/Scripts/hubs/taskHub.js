@@ -24,9 +24,16 @@
 			events.publish(events.task.taskDeleted, model);
 		};
 
+		_taskHub.client.getAll = function(model)
+		{
+			events.publish(events.task.fetchedAll, model);
+		};
+
 		events.subscribe(events.connection.started, function (e)
 		{
 			events.subscribe(events.task.taskAdded, addTask);
+
+			_taskHub.server.getAll();
 		});
 
 		events.subscribe(events.task.update, function (e)

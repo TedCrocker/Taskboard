@@ -16,6 +16,7 @@
 	events.task.taskUpdated = "events.task.taskUpdated";
 	events.task.update = "events.task.update";
 	events.task.remove = "events.task.remove";
+	events.task.fetchedAll = "events.task.fetchedAll";
 
 	var _eventMappings = {};
 
