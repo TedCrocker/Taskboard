@@ -28,6 +28,7 @@
 		if (new Date() - timeStamp > 100)
 		{
 			updateTask.apply($(this).find("textarea"));
+			timeStamp = new Date();
 		}
 	}
 	
