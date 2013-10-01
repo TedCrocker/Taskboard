@@ -19,6 +19,11 @@
 			events.publish(events.task.taskUpdated, model);
 		};
 
+		_taskHub.client.deleteTask = function(model)
+		{
+			events.publish(events.task.taskDeleted, model);
+		};
+
 		events.subscribe(events.connection.started, function (e)
 		{
 			events.subscribe(events.task.taskAdded, addTask);
@@ -27,6 +32,11 @@
 		events.subscribe(events.task.update, function (e)
 		{
 			_taskHub.server.updateTask(e.data);
+		});
+		
+		events.subscribe(events.task.remove, function (e)
+		{
+			_taskHub.server.deleteTask(e.data);
 		});
 	}
 

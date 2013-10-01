@@ -24,5 +24,10 @@ namespace Taskboard.Hubs
 		{
 			Clients.All.updateTask(task);
 		}
+
+		public void DeleteTask(TaskItem task)
+		{
+			Clients.All.deleteTask(task);
+		}
 	}
 }

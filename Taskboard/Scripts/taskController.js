@@ -15,6 +15,10 @@
 		});
 		var textArea = $("<textarea/>").text(event.data.content);
 		taskDiv.append(textArea);
+
+		var deleteButton = $("<button/>").text("X").addClass("deleteTask");
+		taskDiv.append(deleteButton);
+		
 		_body.append(taskDiv);
 	}
 
@@ -37,6 +41,12 @@
 
 		events.publish(events.task.update, data);
 	}
+	
+	function deleteTask()
+	{
+		var data = { Id: parseInt($(this).parent().attr('id').substring(5), 10) };
+		events.publish(events.task.remove, data);
+	}
 
 	function taskUpdated(event)
 	{
@@ -45,6 +55,12 @@
 		taskDiv.css("top", event.data.top);
 		taskDiv.find("textarea").val(event.data.content);
 	}
+	
+	function taskDeleted(event)
+	{
+		var taskDiv = $('#task-' + event.data.Id);
+		taskDiv.remove();
+	}
 
 	_addTaskButton.on("click", function ()
 	{
@@ -52,9 +68,11 @@
 	});
 
 	_body.on("change", ".task textArea", updateTask);
-
+	_body.on("click", ".task .deleteTask", deleteTask);
+		
 	events.subscribe(events.task.taskReceived, taskReceived);
 	events.subscribe(events.task.taskUpdated, taskUpdated);
+	events.subscribe(events.task.taskDeleted, taskDeleted);
 
 })(	window.events = window.events || {},
 	jQuery);
