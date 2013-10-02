@@ -32,7 +32,7 @@ namespace Taskboard.Hubs
 		public void UpdateTask(TaskItem task)
 		{
 			_taskRepo.Update(task);
-			Clients.All.updateTask(task);
+			Clients.AllExcept(Context.ConnectionId).updateTask(task);
 		}
 
 		public void DeleteTask(TaskItem task)
@@ -44,7 +44,7 @@ namespace Taskboard.Hubs
 		public void GetAll()
 		{
 			var tasks = _taskRepo.GetWhere(t => true).ToArray();
-			Clients.All.getAll(tasks);
+			Clients.Caller.getAll(tasks);
 		}
 	}
 }
