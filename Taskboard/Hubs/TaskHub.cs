@@ -9,12 +9,11 @@ namespace Taskboard.Hubs
 {
 	public class TaskHub : Hub
 	{
+		private IDataRepository<TaskItem> _taskRepo;
 		public TaskHub(IDataRepository<TaskItem> taskRepo)
 		{
 			_taskRepo = taskRepo;
 		}
-
-		private IDataRepository<TaskItem> _taskRepo;
 
 		public void AddTask()
 		{

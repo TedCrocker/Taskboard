@@ -177,8 +177,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Hubs\StoryHub.cs" />
     <Compile Include="Hubs\TaskHub.cs" />
+    <Compile Include="Models\Story.cs" />
+    <Compile Include="Models\StorySize.cs" />
     <Compile Include="Models\TaskItem.cs" />
+    <Compile Include="Models\WorkFlowState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

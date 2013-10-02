@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Taskboard.DataAccess;
 
 namespace Taskboard.Models
 {
-	public class TaskItem : AzureEntity
+	public class Story : AzureEntity
 	{
 		[JsonProperty("top")]
 		public int Top { get; set; }
@@ -11,9 +12,13 @@ namespace Taskboard.Models
 		public int Left { get; set; }
 		[JsonProperty("content")]
 		public string Content { get; set; }
-		[JsonProperty("assignedTo")]
-		public string AssignedTo { get; set; }
 		[JsonProperty("workFlowState")]
 		public WorkFlowState WorkFlowState { get; set; }
+		[JsonProperty("opened")]
+		public DateTime? Opened { get; set; }
+		[JsonProperty("closed")]
+		public DateTime? Closed { get; set; }
+		[JsonProperty("size")]
+		public StorySize? Size { get; set; }
 	}
 }
