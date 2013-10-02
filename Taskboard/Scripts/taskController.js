@@ -34,7 +34,7 @@
 	
 	function updateTask() {
 		var data = {
-			Id: parseInt($(this).parent().attr('id').substring(5), 10),
+			Id: $(this).parent().attr('id').substring(5),
 			left: parseInt($(this).parent().css('left'), 10),
 			top: parseInt($(this).parent().css('top'), 10),
 			content: $(this).val()
@@ -45,7 +45,7 @@
 	
 	function deleteTask()
 	{
-		var data = { Id: parseInt($(this).parent().attr('id').substring(5), 10) };
+		var data = { Id: $(this).parent().attr('id').substring(5) };
 		events.publish(events.task.remove, data);
 	}
 

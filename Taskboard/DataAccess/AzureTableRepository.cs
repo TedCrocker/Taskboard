@@ -10,7 +10,8 @@ namespace Taskboard.DataAccess
 {
 	public class AzureTableRepository<T> : IDataRepository<T> where T : ITableEntity
 	{
-		private CloudTable _table;
+		private readonly CloudTable _table;
+		private static readonly HashSet<T> _entities = new HashSet<T>();
 
 		public AzureTableRepository(string connectionString = "UseDevelopmentStorage=true")
 		{
@@ -23,12 +24,14 @@ namespace Taskboard.DataAccess
 		public void Add(T entity)
 		{
 			_table.Execute(TableOperation.Insert(entity));
+			_entities.Add(entity);
 		}
 
 		public void Delete(T entity)
 		{
-			entity.ETag = "*";
-			_table.Execute(TableOperation.Delete(entity));
+			var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
+			_table.Execute(TableOperation.Delete(storedEntity));
+			_entities.RemoveWhere(e => e.RowKey == entity.RowKey);
 		}
 
 		public T Get(string id)
@@ -48,7 +51,10 @@ namespace Taskboard.DataAccess
 
 		public void Update(T entity)
 		{
-			_table.Execute(TableOperation.Merge(entity));
+			var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
+
+			storedEntity.ReadEntity(entity.WriteEntity(new OperationContext()), new OperationContext());
+			_table.Execute(TableOperation.Merge(storedEntity));
 		}
 
 		public IList<T> GetWhere(Func<T, bool> whereCondition)
@@ -68,6 +74,15 @@ namespace Taskboard.DataAccess
 				};
 			
 			var queryResults = _table.ExecuteQuery(query, resolver, null, null).ToList<T>();
+
+			foreach (var result in queryResults)
+			{
+				if (!_entities.Contains(result))
+				{
+					_entities.Add(result);
+				}
+			}
+
 			return queryResults.Where(whereCondition).ToList();
 		}
 	}
