@@ -4,7 +4,6 @@
 
 	function setupChatHub()
 	{
-		$('#displayName').val(prompt("Enter your name:", ""));
 		$('#message').focus();
 
 		chatHub.client.addNewMessageToPage = function (name, message)

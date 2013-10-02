@@ -18,7 +18,25 @@
 
 		var deleteButton = $("<button/>").text("X").addClass("deleteTask");
 		taskDiv.append(deleteButton);
+
+		var openButton = $("<button/>").text("Open").addClass("openTask");
+		taskDiv.append(openButton);
 		
+		var closeButton = $("<button/>").text("Close").addClass("closeTask");
+		taskDiv.append(closeButton);
+
+		if (event.data.workFlowState == 1)
+		{
+			taskDiv.addClass("open");
+		}
+		else if (event.data.workFlowState == 2)
+		{
+			taskDiv.addClass("closed");
+		}
+
+		var assignedToHidden = $("<input type='hidden'/>").addClass("assignedTo").val(event.data.assignedTo);
+		taskDiv.append(assignedToHidden);
+
 		_body.append(taskDiv);
 	}
 
@@ -32,12 +50,27 @@
 		}
 	}
 	
-	function updateTask() {
+	function updateTask()
+	{
+		var taskDiv = $(this).parent();
+
+		var state = 0;
+		if (taskDiv.hasClass('open'))
+		{
+			state = 1;
+		}
+		else if (taskDiv.hasClass('closed'))
+		{
+			state = 2;
+		}
+
 		var data = {
-			Id: $(this).parent().attr('id').substring(5),
-			left: parseInt($(this).parent().css('left'), 10),
-			top: parseInt($(this).parent().css('top'), 10),
-			content: $(this).val()
+			Id: taskDiv.attr('id').substring(5),
+			left: parseInt(taskDiv.css('left'), 10),
+			top: parseInt(taskDiv.css('top'), 10),
+			content: $(this).val(),
+			workFlowState: state,
+			assignedTo: taskDiv.find('.assignedTo').val()
 		};
 
 		events.publish(events.task.update, data);
@@ -48,6 +81,22 @@
 		var data = { Id: $(this).parent().attr('id').substring(5) };
 		events.publish(events.task.remove, data);
 	}
+	
+	function openTask()
+	{
+		var parent = $(this).parent();
+		parent.addClass('open');
+		parent.find('.assignedTo').val(window.displayName);
+		updateTask.apply(this);
+	}
+	
+	function closeTask()
+	{
+		var parent = $(this).parent();
+		parent.addClass('closed');
+		parent.removeClass('open');
+		updateTask.apply(this);
+	}
 
 	function taskUpdated(event)
 	{
@@ -55,6 +104,21 @@
 		taskDiv.css("left", event.data.left);
 		taskDiv.css("top", event.data.top);
 		taskDiv.find("textarea").val(event.data.content);
+
+		task.removeClass("closed");
+		task.removeClass("open");
+		if (event.data.workFlowState == 1)
+		{
+			task.addClass("open");
+		}
+		else if (event.data.workFlowState == 2)
+		{
+			task.addClass("closed");
+		}
+		if (event.data.assignedTo)
+		{
+			taskDiv.find("assignedTo").val(event.data.assignedTo); 
+		}
 	}
 	
 	function taskDeleted(event)
@@ -78,6 +142,8 @@
 
 	_body.on("change", ".task textArea", updateTask);
 	_body.on("click", ".task .deleteTask", deleteTask);
+	_body.on("click", ".task .openTask", openTask);
+	_body.on("click", ".task .closeTask", closeTask);
 		
 	events.subscribe(events.task.taskReceived, taskReceived);
 	events.subscribe(events.task.taskUpdated, taskUpdated);

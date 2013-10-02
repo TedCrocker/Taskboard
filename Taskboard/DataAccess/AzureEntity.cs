@@ -52,6 +52,7 @@ namespace Taskboard.DataAccess
 			if (value is int) return new EntityProperty((int)value);
 			if (value is long) return new EntityProperty((long)value);
 			if (value is string) return new EntityProperty((string)value);
+			if (value is Enum) return new EntityProperty((int) value);
 			throw new Exception("not supported " + value.GetType() + " for " + key);
 		}
 

@@ -51,7 +51,7 @@
 
 	_input.on("keyup", function (e) 
 	{
-		var userDisplayName = $('#displayName').val();
+		var userDisplayName = window.displayName;
 		var inputText = _input.val();
 		if (event.keyCode === 13 && inputText)
 		{
