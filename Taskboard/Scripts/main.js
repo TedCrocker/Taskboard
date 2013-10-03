@@ -1,4 +1,4 @@
-﻿(function (hubs, events, $)
+﻿(function (taskboard, events, $)
 {
 	$(document).ready(function ()
 	{
@@ -8,8 +8,10 @@
 		{
 			events.publish(events.connection.started);
 		});
+
+		var taskHub = new taskboard.Hub("task");
 	});
 	
-})(	window.hubs = window.hubs || {},
+})(	window.taskboard = window.taskboard || {},
 	window.events = window.events || {},
 	jQuery);

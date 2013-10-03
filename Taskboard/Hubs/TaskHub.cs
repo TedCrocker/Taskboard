@@ -15,7 +15,7 @@ namespace Taskboard.Hubs
 			_taskRepo = taskRepo;
 		}
 
-		public void AddTask()
+		public void Add()
 		{
 			var task = new TaskItem()
 				{
@@ -25,19 +25,19 @@ namespace Taskboard.Hubs
 					Content = "New Task"
 				};
 			_taskRepo.Add(task);
-			Clients.All.addTask(task);
+			Clients.All.add(task);
 		}
 
-		public void UpdateTask(TaskItem task)
+		public void Update(TaskItem task)
 		{
 			_taskRepo.Update(task);
-			Clients.AllExcept(Context.ConnectionId).updateTask(task);
+			Clients.AllExcept(Context.ConnectionId).update(task);
 		}
 
-		public void DeleteTask(TaskItem task)
+		public void Remove(TaskItem task)
 		{
 			_taskRepo.Delete(task);
-			Clients.All.deleteTask(task);
+			Clients.All.remove(task);
 		}
 
 		public void GetAll()

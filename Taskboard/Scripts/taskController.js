@@ -73,13 +73,13 @@
 			assignedTo: taskDiv.find('.assignedTo').val()
 		};
 
-		events.publish(events.task.update, data);
+		events.publish("events.task.update", data);
 	}
 	
 	function deleteTask()
 	{
 		var data = { Id: $(this).parent().attr('id').substring(5) };
-		events.publish(events.task.remove, data);
+		events.publish("events.task.remove", data);
 	}
 	
 	function openTask()
@@ -137,7 +137,7 @@
 
 	_addTaskButton.on("click", function ()
 	{
-		events.publish(events.task.taskAdded);
+		events.publish("events.task.add");
 	});
 
 	_body.on("change", ".task textArea", updateTask);
@@ -145,10 +145,10 @@
 	_body.on("click", ".task .openTask", openTask);
 	_body.on("click", ".task .closeTask", closeTask);
 		
-	events.subscribe(events.task.taskReceived, taskReceived);
-	events.subscribe(events.task.taskUpdated, taskUpdated);
-	events.subscribe(events.task.taskDeleted, taskDeleted);
-	events.subscribe(events.task.fetchedAll, tasksFetched);
+	events.subscribe("events.task.added", taskReceived);
+	events.subscribe("events.task.updated", taskUpdated);
+	events.subscribe("events.task.removed", taskDeleted);
+	events.subscribe("events.task.fetched", tasksFetched);
 
 })(	window.events = window.events || {},
 	jQuery);
