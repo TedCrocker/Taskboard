@@ -5,16 +5,15 @@ using Taskboard.Models;
 
 namespace Taskboard.Hubs
 {
-	public class StoryHub : Hub
+	public class StoryHub : BaseHub<Story>
 	{
-		private IDataRepository<Story> _storyRepo;
 
 		public StoryHub(IDataRepository<Story> storyRepo)
 		{
-			_storyRepo = storyRepo;
+			_repository = storyRepo;
 		}
 
-		public void AddStory()
+		public override void Add()
 		{
 			var story = new Story()
 				{
@@ -23,26 +22,8 @@ namespace Taskboard.Hubs
 					Top = 100,
 					Content = "",
 				};
-			_storyRepo.Add(story);
+			_repository.Add(story);
 			Clients.All.addStory(story);
-		}
-
-		public void UpdateStory(Story story)
-		{
-			_storyRepo.Update(story);
-			Clients.AllExcept(Context.ConnectionId).updateStory(story);
-		}
-
-		public void DeleteTask(Story story)
-		{
-			_storyRepo.Delete(story);
-			Clients.All.deleteStory(story);
-		}
-
-		public void GetAll()
-		{
-			var stories = _storyRepo.GetWhere(s => true).ToArray();
-			Clients.Caller.getAll(stories);
 		}
 	}
 }
