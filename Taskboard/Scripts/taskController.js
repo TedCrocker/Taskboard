@@ -9,10 +9,7 @@
 		taskDiv.attr("id", "task-" + event.data.Id);
 		taskDiv.css("left", event.data.left);
 		taskDiv.css("top", event.data.top);
-		taskDiv.draggable({
-			containment: "body",
-			drag: dragUpdateTask
-		});
+		
 		var textArea = $("<textarea/>").text(event.data.content).addClass('content');
 		taskDiv.append(textArea);
 
@@ -38,6 +35,11 @@
 		taskDiv.append(assignedToHidden);
 
 		_body.append(taskDiv);
+		
+		taskDiv.draggable({
+			containment: "body",
+			drag: dragUpdateTask
+		});
 	}
 
 	var timeStamp = new Date();

@@ -17,10 +17,7 @@
 		storyDiv.attr('id', 'story-' + event.data.Id);
 		storyDiv.css('left', event.data.left);
 		storyDiv.css('top', event.data.top);
-		storyDiv.draggable({
-			containment: 'body',
-			drag: dragUpdateStory
-		});
+		
 
 		var textArea = $('<textarea/>').text(event.data.content).addClass('content');
 		storyDiv.append(textArea);
@@ -53,6 +50,10 @@
 		}
 
 		_body.append(storyDiv);
+		storyDiv.draggable({
+			containment: 'body',
+			drag: dragUpdateStory
+		});
 	}
 
 	var _timeStamp = new Date();
