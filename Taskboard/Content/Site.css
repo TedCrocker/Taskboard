@@ -81,10 +81,49 @@ body {
 
 .task {
   background-color: yellow;
-  width: 3em;
-  height: 3em;
+  width: 7em;
+  height: 7em;
   padding: 0.5em;
   position: absolute; }
+  .task .content {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 90%;
+    height: 70%;
+    text-align: center;
+    border: 0;
+    resize: none;
+    background-color: transparent; }
+  .task .deleteTask,
+  .task .openTask,
+  .task .closeTask {
+    display: none;
+    position: absolute;
+    top: 2.5%;
+    height: 12%;
+    width: 22%;
+    font-size: 0.5em;
+    padding: 0;
+    border: 0; }
+    .task .deleteTask:hover,
+    .task .openTask:hover,
+    .task .closeTask:hover {
+      background-color: #d6d6d6; }
+    .task .deleteTask:hover:active,
+    .task .openTask:hover:active,
+    .task .closeTask:hover:active {
+      background-color: #bdbdbd; }
+  .task .closeTask {
+    left: 5%; }
+  .task .openTask {
+    left: 28.5%; }
+  .task .deleteTask {
+    left: 53%; }
+  .task:hover .deleteTask,
+  .task:hover .openTask,
+  .task:hover .closeTask {
+    display: block; }
 
 .story {
   background-color: #FFF;
