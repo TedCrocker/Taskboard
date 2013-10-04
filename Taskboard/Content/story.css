@@ -13,6 +13,26 @@
     text-align: center;
     border: 0;
     resize: none; }
+  .story .size {
+    position: absolute;
+    height: 10%;
+    top: 2.5%;
+    right: 5%;
+    font-size: 0.8em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none; }
+  .story .closeDate,
+  .story .openDate {
+    position: absolute;
+    height: 10%;
+    bottom: 2.5%;
+    font-size: 0.8em; }
+  .story .openDate {
+    left: 5%; }
+  .story .closeDate {
+    right: 5%; }
   .story .closeStory,
   .story .openStory,
   .story .deleteStory {
@@ -42,4 +62,6 @@
   .story:hover .closeStory,
   .story:hover .openStory {
     display: block; }
+  .story:hover .size {
+    background-color: #F0F0F0; }
 

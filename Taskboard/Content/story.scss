@@ -20,6 +20,39 @@
 		resize: none;
 	}
 
+	.size
+	{
+		position: absolute;
+		height: 10%;
+		top: 2.5%;
+		right: 5%;
+		font-size: 0.8em;
+		 -webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		//padding: 2px 30px 2px 2px;
+		border: none;
+	}
+
+	.closeDate,
+	.openDate
+	{
+		position: absolute;
+		height: 10%;
+		bottom: 2.5%;		
+		font-size: 0.8em;
+	}
+
+	.openDate
+	{
+		left: 5%;
+	}
+
+	.closeDate
+	{
+		right: 5%;
+	}
+
 	.closeStory,
 	.openStory,
 	.deleteStory
@@ -64,6 +97,11 @@
 		.openStory
 		{
 			display: block;
+		}
+
+		.size
+		{
+			background-color: #F0F0F0;
 		}
 	}
 	

@@ -3,6 +3,14 @@
 	var _addStoryButton = $('#addStory');
 	var _body = $('body');
 
+	var _sizeDropdown = $('<select/>').addClass('size');
+	_sizeDropdown.append($('<option/>').val('').text(''));
+	_sizeDropdown.append($('<option/>').val(1).text('XS'));
+	_sizeDropdown.append($('<option/>').val(2).text('S'));
+	_sizeDropdown.append($('<option/>').val(4).text('M'));
+	_sizeDropdown.append($('<option/>').val(8).text('L'));
+	_sizeDropdown.append($('<option/>').val(16).text('XL'));
+
 	function storyReceived(event)
 	{
 		var storyDiv = $('<div/>').addClass('story');
@@ -25,7 +33,16 @@
 
 		var closeButton = $('<button/>').text('Close').addClass('closeStory');
 		storyDiv.append(closeButton);
+
+		var openDate = $('<div/>').text(event.data.opened == null ? '' : event.data.opened).addClass('openDate');
+		storyDiv.append(openDate);
 		
+		var closeDate = $('<div/>').text(event.data.closed == null ? '' : event.data.closed).addClass('closeDate');
+		storyDiv.append(closeDate);
+
+		storyDiv.append(_sizeDropdown.clone());
+
+
 		if (event.data.workFlowState == 1)
 		{
 			storyDiv.addClass('open');
