@@ -36,15 +36,23 @@ body {
 * {
   box-sizing: border-box; }
 
+#addStory,
 #addTask {
   position: absolute;
-  top: 0px;
   left: 0px;
   height: 3em;
   width: 3em;
   font-size: 1.5em;
   background-color: #4F4F4F;
   color: white; }
+
+#addStory {
+  position: absolute;
+  top: 0px; }
+
+#addTask {
+  position: absolute;
+  top: 3em; }
 
 #consoleOutput {
   padding: 0.5em;
@@ -73,8 +81,15 @@ body {
 
 .task {
   background-color: yellow;
-  width: 15em;
-  height: 15em;
+  width: 3em;
+  height: 3em;
+  padding: 0.5em;
+  position: absolute; }
+
+.story {
+  background-color: #FFF;
+  width: 10em;
+  height: 6em;
   padding: 0.5em;
   position: absolute; }
 

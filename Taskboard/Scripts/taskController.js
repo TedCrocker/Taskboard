@@ -6,14 +6,14 @@
 	function taskReceived(event)
 	{
 		var taskDiv = $("<div/>").addClass("task");
-		taskDiv.attr("id", "task-" + event.data.Id.toString());
+		taskDiv.attr("id", "task-" + event.data.Id);
 		taskDiv.css("left", event.data.left);
 		taskDiv.css("top", event.data.top);
 		taskDiv.draggable({
 			containment: "body",
 			drag: dragUpdateTask
 		});
-		var textArea = $("<textarea/>").text(event.data.content);
+		var textArea = $("<textarea/>").text(event.data.content).addClass('content');
 		taskDiv.append(textArea);
 
 		var deleteButton = $("<button/>").text("X").addClass("deleteTask");
@@ -68,7 +68,7 @@
 			Id: taskDiv.attr('id').substring(5),
 			left: parseInt(taskDiv.css('left'), 10),
 			top: parseInt(taskDiv.css('top'), 10),
-			content: $(this).val(),
+			content: taskDiv.find('.content').val(),
 			workFlowState: state,
 			assignedTo: taskDiv.find('.assignedTo').val()
 		};
@@ -105,15 +105,15 @@
 		taskDiv.css("top", event.data.top);
 		taskDiv.find("textarea").val(event.data.content);
 
-		task.removeClass("closed");
-		task.removeClass("open");
+		taskDiv.removeClass("closed");
+		taskDiv.removeClass("open");
 		if (event.data.workFlowState == 1)
 		{
-			task.addClass("open");
+			taskDiv.addClass("open");
 		}
 		else if (event.data.workFlowState == 2)
 		{
-			task.addClass("closed");
+			taskDiv.addClass("closed");
 		}
 		if (event.data.assignedTo)
 		{

@@ -12,19 +12,30 @@ body
 	box-sizing: border-box;
 }
 
-
+#addStory,
 #addTask
 {
 	position: absolute;
-	top: 0px;
 	left: 0px;
 	height: 3em;
 	width: 3em;
 	font-size: 1.5em;
 	background-color: #4F4F4F;
 	color: white
+}
 
+#addStory
+{
+	position: absolute;
+	top: 0px;
+}
+
+#addTask
+{
+	position: absolute;
+	top: 3em;
 }
 
 @import "consoleWindow";
 @import "task";
+@import "story";
