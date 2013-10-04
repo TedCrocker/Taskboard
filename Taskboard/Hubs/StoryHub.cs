@@ -23,7 +23,7 @@ namespace Taskboard.Hubs
 					Content = "",
 				};
 			_repository.Add(story);
-			Clients.All.addStory(story);
+			Clients.All.add(story);
 		}
 	}
 }

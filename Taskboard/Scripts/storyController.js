@@ -152,9 +152,9 @@
 	});
 	
 	_body.on("change", ".story textArea",	 updateStory);
-	_body.on("click",  ".story .deleteTask", deleteStory);
-	_body.on("click",  ".story .openTask",	 openStory);
-	_body.on("click",  ".story .closeTask",	 closeStory);
+	_body.on("click",  ".story .deleteStory", deleteStory);
+	_body.on("click",  ".story .openStory",	 openStory);
+	_body.on("click",  ".story .closeStory",	 closeStory);
 	
 	events.subscribe("events.story.added",	 storyReceived);
 	events.subscribe("events.story.updated", storyUpdated);
