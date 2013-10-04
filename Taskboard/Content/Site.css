@@ -88,8 +88,46 @@ body {
 
 .story {
   background-color: #FFF;
-  width: 10em;
-  height: 6em;
+  width: 15em;
+  height: 9em;
   padding: 0.5em;
   position: absolute; }
+  .story .content {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 90%;
+    height: 70%;
+    text-align: center;
+    border: 0;
+    resize: none; }
+  .story .closeStory,
+  .story .openStory,
+  .story .deleteStory {
+    display: none;
+    position: absolute;
+    height: 10%;
+    width: 12%;
+    top: 2.5%;
+    font-size: 0.5em;
+    padding: 0;
+    border: 0; }
+    .story .closeStory:hover,
+    .story .openStory:hover,
+    .story .deleteStory:hover {
+      background-color: #d6d6d6; }
+    .story .closeStory:hover:active,
+    .story .openStory:hover:active,
+    .story .deleteStory:hover:active {
+      background-color: #bdbdbd; }
+  .story .closeStory {
+    left: 5%; }
+  .story .openStory {
+    left: 17.5%; }
+  .story .deleteStory {
+    left: 30%; }
+  .story:hover .deleteStory,
+  .story:hover .closeStory,
+  .story:hover .openStory {
+    display: block; }
 
