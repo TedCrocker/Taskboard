@@ -135,6 +135,9 @@
 	{
 		var parent = $(this).parent();
 		parent.addClass('open');
+		var date = new Date();
+		parent.find('.openDate').text(date.toDateString());
+		
 		updateStory.apply(this);
 	}
 	
@@ -143,6 +146,9 @@
 		var parent = $(this).parent();
 		parent.addClass('closed');
 		parent.removeClass('open');
+		
+		var date = new Date();
+		parent.find('.closeDate').text(date.toDateString());
 		updateStory.apply(this);
 	}
 
@@ -151,7 +157,7 @@
 		events.publish("events.story.add");
 	});
 	
-	_body.on("change", ".story textArea",	 updateStory);
+	_body.on("keyup", ".story textArea",	 updateStory);
 	_body.on("click",  ".story .deleteStory", deleteStory);
 	_body.on("click",  ".story .openStory",	 openStory);
 	_body.on("click",  ".story .closeStory",	 closeStory);
