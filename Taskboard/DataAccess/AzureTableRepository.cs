@@ -54,7 +54,14 @@ namespace Taskboard.DataAccess
 			var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
 
 			storedEntity.ReadEntity(entity.WriteEntity(new OperationContext()), new OperationContext());
-			_table.Execute(TableOperation.Merge(storedEntity));
+			try
+			{
+				_table.Execute(TableOperation.Merge(storedEntity));
+			}
+			catch
+			{
+				
+			}
 		}
 
 		public IList<T> GetWhere(Func<T, bool> whereCondition)

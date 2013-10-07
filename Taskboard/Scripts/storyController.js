@@ -2,6 +2,7 @@
 {
 	var _addStoryButton = $('#addStory');
 	var _body = $('body');
+	var _dateDisplayFormat = "DD/MM/YY A";
 
 	var _sizeDropdown = $('<select/>').addClass('size');
 	_sizeDropdown.append($('<option/>').val('').text(''));
@@ -31,10 +32,10 @@
 		var closeButton = $('<button/>').text('Close').addClass('closeStory');
 		storyDiv.append(closeButton);
 
-		var openDate = $('<div/>').text(event.data.opened == null ? '' : event.data.opened).addClass('openDate');
+		var openDate = $('<div/>').text(event.data.opened == null ? '' : moment(event.data.opened).format(_dateDisplayFormat)).addClass('openDate');
 		storyDiv.append(openDate);
 		
-		var closeDate = $('<div/>').text(event.data.closed == null ? '' : event.data.closed).addClass('closeDate');
+		var closeDate = $('<div/>').text(event.data.closed == null ? '' : moment(event.data.closed).format(_dateDisplayFormat)).addClass('closeDate');
 		storyDiv.append(closeDate);
 
 		storyDiv.append(_sizeDropdown.clone());
@@ -98,6 +99,22 @@
 			storyReceived({ data: event.data[i] });
 		}
 	}
+	
+	function getDate(dateVal)
+	{
+		var date = null;
+		if (dateVal)
+		{
+			date = moment(dateVal.substring(0, 8), "DD/MM/YY");
+			if (dateVal.indexOf("PM") > -1)
+			{
+				date.set('hour', 13);
+			}
+			date = date.toJSON();
+		}
+
+		return date;
+	}
 
 	function updateStory()
 	{
@@ -113,13 +130,17 @@
 			state = 2;
 		}
 
+		var openDate = getDate(storyDiv.find('.openDate').text());
+		var closeDate = getDate(storyDiv.find('.closeDate').text());
+
 		var data = {
 			Id: storyDiv.attr('id').substring(6),
 			left: parseInt(storyDiv.css('left'), 10),
 			top: parseInt(storyDiv.css('top'), 10),
 			content: storyDiv.find('.content').val(),
 			workFlowState: state,
-			
+			opened: openDate,
+			closed: closeDate
 		};
 
 		events.publish("events.story.update", data);
@@ -135,8 +156,7 @@
 	{
 		var parent = $(this).parent();
 		parent.addClass('open');
-		var date = new Date();
-		parent.find('.openDate').text(date.toDateString());
+		parent.find('.openDate').text(moment().format(_dateDisplayFormat));
 		
 		updateStory.apply(this);
 	}
@@ -147,8 +167,7 @@
 		parent.addClass('closed');
 		parent.removeClass('open');
 		
-		var date = new Date();
-		parent.find('.closeDate').text(date.toDateString());
+		parent.find('.closeDate').text(moment().format(_dateDisplayFormat));
 		updateStory.apply(this);
 	}
 

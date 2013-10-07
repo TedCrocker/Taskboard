@@ -65,7 +65,12 @@ namespace Taskboard.DataAccess
 				case EdmType.Boolean:
 					return property.BooleanValue;
 				case EdmType.DateTime:
-					return property.DateTimeOffsetValue;
+					if (property.DateTimeOffsetValue.HasValue)
+					{
+						return property.DateTimeOffsetValue.Value.DateTime;
+					}
+					return null;
+
 				case EdmType.Double:
 					return property.DoubleValue;
 				case EdmType.Guid:
