@@ -1,4 +1,4 @@
-﻿(function (events, $)
+﻿(function (taskboard, events, $)
 {
 	var _output = $('#discussion');
 	var _input = $('#message');
@@ -51,7 +51,7 @@
 
 	_input.on("keyup", function (e) 
 	{
-		var userDisplayName = window.displayName;
+		var userDisplayName = taskboard.displayName;
 		var inputText = _input.val();
 		if (event.keyCode === 13 && inputText)
 		{
@@ -62,5 +62,6 @@
 
 	events.subscribe(events.chat.messageReceived, addToOutput);
 
-})(window.events = window.events || {},
+})( window.taskboard = window.taskboard || {},
+	window.events = window.events || {},
 	jQuery);

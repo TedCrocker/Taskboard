@@ -58,6 +58,16 @@
 		left: 28.5%;
 	}
 
+	.assignedTo
+	{
+		position: absolute;
+		right: 5%;
+		top: 2.5%;
+		font-weight: bold;
+		font-size: .8em;
+		font-family: arial;
+	}
+
 	&.closed
 	{
 		background-image: url(closedTask.png);

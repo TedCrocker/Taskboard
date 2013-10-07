@@ -2,7 +2,7 @@
 {
 	$(document).ready(function ()
 	{
-		window.displayName = prompt("Enter your name:", "");//Fix this later
+		taskboard.displayName = "Ted Crocker";//Fix this later
 
 		$.connection.hub.start().done(function ()
 		{

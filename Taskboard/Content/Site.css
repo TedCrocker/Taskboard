@@ -121,6 +121,13 @@ body {
     left: 5%; }
   .task .openTask {
     left: 28.5%; }
+  .task .assignedTo {
+    position: absolute;
+    right: 5%;
+    top: 2.5%;
+    font-weight: bold;
+    font-size: .8em;
+    font-family: arial; }
   .task.closed {
     background-image: url(closedTask.png); }
   .task .deleteTask {

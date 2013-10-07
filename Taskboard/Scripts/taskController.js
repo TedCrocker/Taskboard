@@ -1,4 +1,4 @@
-﻿(function (events, $)
+﻿(function (taskboard, events, $)
 {
 	var _addTaskButton = $('#addTask');
 	var _body = $('body');
@@ -31,7 +31,7 @@
 			taskDiv.addClass("closed");
 		}
 
-		var assignedToHidden = $("<input type='hidden'/>").addClass("assignedTo").val(event.data.assignedTo);
+		var assignedToHidden = $("<div/>").addClass("assignedTo").text(event.data.assignedTo == null ? "" : event.data.assignedTo);
 		taskDiv.append(assignedToHidden);
 
 		_body.append(taskDiv);
@@ -72,7 +72,7 @@
 			top: parseInt(taskDiv.css('top'), 10),
 			content: taskDiv.find('.content').val(),
 			workFlowState: state,
-			assignedTo: taskDiv.find('.assignedTo').val()
+			assignedTo: taskDiv.find('.assignedTo').text()
 		};
 
 		events.publish("events.task.update", data);
@@ -88,7 +88,7 @@
 	{
 		var parent = $(this).parent();
 		parent.addClass('open');
-		parent.find('.assignedTo').val(window.displayName);
+		parent.find('.assignedTo').text(taskboard.displayName.match(/([A-Z])/g).join(''));
 		updateTask.apply(this);
 	}
 	
@@ -119,7 +119,7 @@
 		}
 		if (event.data.assignedTo)
 		{
-			taskDiv.find("assignedTo").val(event.data.assignedTo); 
+			taskDiv.find(".assignedTo").text(event.data.assignedTo); 
 		}
 	}
 	
@@ -152,5 +152,6 @@
 	events.subscribe("events.task.removed", taskDeleted);
 	events.subscribe("events.task.fetched", tasksFetched);
 
-})(	window.events = window.events || {},
+})( window.taskboard = window.taskboard || {},
+	window.events = window.events || {},
 	jQuery);
