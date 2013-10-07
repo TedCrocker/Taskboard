@@ -7,13 +7,17 @@ namespace Taskboard
 {
 	public static class DependencyConfig
 	{
+		public static void RegisterServices(IKernel kernel)
+		{
+			kernel.Bind(typeof(IDataRepository<>)).To(typeof(AzureTableRepository<>));
+			kernel.Bind(typeof(IUserManager)).To(typeof(DummyFormsAuthenticationUserManager));
+		}
+
 		public static void SetupDependencies()
 		{
 			var kernel = new StandardKernel();
+			RegisterServices(kernel);
 			var resolver = new NinjectSignalRDependencyResolver(kernel);
-
-			kernel.Bind(typeof (IDataRepository<>)).To(typeof (AzureTableRepository<>));
-			kernel.Bind(typeof (IUserManager)).To(typeof (DummyFormsAuthenticationUserManager));
 
 			RouteTable.Routes.MapHubs(new HubConfiguration()
 				{

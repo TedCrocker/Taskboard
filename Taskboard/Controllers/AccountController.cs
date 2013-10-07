@@ -23,6 +23,7 @@ namespace Taskboard.Controllers
 		}
 
 		[AllowAnonymous]
+		[HttpPost]
 		public ActionResult Index(string userName, string password)
 		{
 			if (_manager.Authenticate(userName, password))
