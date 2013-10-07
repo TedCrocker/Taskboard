@@ -5,7 +5,9 @@
 	height: 7em;
 	padding: 0.5em;
 	position: absolute;
-
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	background-image: url(openTask.png);
 
 	.content
 	{
@@ -54,6 +56,11 @@
 	.openTask
 	{
 		left: 28.5%;
+	}
+
+	&.closed
+	{
+		background-image: url(closedTask.png);
 	}
 
 	.deleteTask

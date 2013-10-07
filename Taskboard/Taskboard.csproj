@@ -187,12 +187,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\checkmark.png" />
+    <Content Include="Content\closedTask.png" />
     <Content Include="Content\consoleWindow.css">
       <DependentUpon>consoleWindow.scss</DependentUpon>
     </Content>
     <Content Include="Content\normalize.css">
       <DependentUpon>normalize.scss</DependentUpon>
     </Content>
+    <Content Include="Content\openTask.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>

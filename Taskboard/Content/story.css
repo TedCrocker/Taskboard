@@ -4,7 +4,12 @@
   height: 9em;
   padding: 0.5em;
   position: absolute; }
+  .story.closed {
+    background-image: url(checkmark.png);
+    background-repeat: no-repeat;
+    background-size: cover; }
   .story .content {
+    background-color: transparent;
     position: absolute;
     top: 15%;
     left: 5%;
@@ -14,6 +19,7 @@
     border: 0;
     resize: none; }
   .story .size {
+    background-color: transparent;
     position: absolute;
     height: 10%;
     top: 2.5%;

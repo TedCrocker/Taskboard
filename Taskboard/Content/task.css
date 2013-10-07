@@ -3,7 +3,10 @@
   width: 7em;
   height: 7em;
   padding: 0.5em;
-  position: absolute; }
+  position: absolute;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-image: url(openTask.png); }
   .task .content {
     position: absolute;
     top: 15%;
@@ -37,6 +40,8 @@
     left: 5%; }
   .task .openTask {
     left: 28.5%; }
+  .task.closed {
+    background-image: url(closedTask.png); }
   .task .deleteTask {
     left: 53%; }
   .task:hover .deleteTask,

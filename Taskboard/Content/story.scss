@@ -6,8 +6,16 @@
 	padding: 0.5em;
 	position: absolute;
 
+	&.closed
+	{
+		background-image: url(checkmark.png);
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
 	.content
 	{
+		background-color: transparent;
 		position: absolute;
 		top: 15%;
 		left: 5%;
@@ -22,6 +30,7 @@
 
 	.size
 	{
+		background-color: transparent;
 		position: absolute;
 		height: 10%;
 		top: 2.5%;
