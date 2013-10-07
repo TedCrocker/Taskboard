@@ -161,6 +161,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\TaskboardConfigSection.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="CustomAuthFilter.cs" />
     <Compile Include="DataAccess\AzureEntity.cs" />
     <Compile Include="DataAccess\AzureTableRepository.cs" />
     <Compile Include="DataAccess\ElasticTableItem.cs" />

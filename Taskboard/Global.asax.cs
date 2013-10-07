@@ -16,6 +16,7 @@ namespace Taskboard
 	{
 		protected void Application_Start()
 		{
+			var config = TaskboardConfigSection.Instance;
 			AreaRegistration.RegisterAllAreas();
 
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
