@@ -13,6 +13,7 @@ namespace Taskboard
 			var resolver = new NinjectSignalRDependencyResolver(kernel);
 
 			kernel.Bind(typeof (IDataRepository<>)).To(typeof (AzureTableRepository<>));
+			kernel.Bind(typeof (IUserManager)).To(typeof (DummyFormsAuthenticationUserManager));
 
 			RouteTable.Routes.MapHubs(new HubConfiguration()
 				{
