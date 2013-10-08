@@ -3,4 +3,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+	body 
+	{
+		font-size: 100%;
+	}
+
+	form 
+	{
+		width: 24em;
+		height: 14em;
+		border-radius: 1em;
+
+		margin-left: auto;
+		margin-right: auto;
+
+		position: relative;
+		top: 50%;
+		margin-top: -7em;
+		text-align: center;
+		padding-top: 0.5em;
+	}
+
+	label 
+	{
+		display: block;
+	}
+
+	input
+	{
+		border-radius: 1em;
+		font-size: 2em;
+		padding: .3em;
+		margin-bottom: .25em;
+	}
+
+	input[type=submit] {
+		padding: .2em 1em;
+		color: white;
+		background-color: #AFAFAF;
+	}
+</style>
+
+@using (Html.BeginForm())
+{
+	<div class="container">
+		<input name="username" type="text" placeholder="Username"/>
+		<input name="password" type="password" placeholder="Password"/>
+		<input type="submit" value="Login"/>
+	</div>
+}
