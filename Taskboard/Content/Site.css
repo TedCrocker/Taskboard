@@ -211,3 +211,9 @@ body {
   .story:hover .size {
     background-color: #F0F0F0; }
 
+.ui-selected {
+  background-color: orange; }
+
+.ui-selecting {
+  background-color: red; }
+

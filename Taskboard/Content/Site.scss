@@ -39,3 +39,13 @@ body
 @import "consoleWindow";
 @import "task";
 @import "story";
+
+.ui-selected
+{
+	background-color: orange;
+}
+
+.ui-selecting
+{
+	background-color: red;
+}

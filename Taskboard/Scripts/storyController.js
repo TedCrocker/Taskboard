@@ -51,10 +51,8 @@
 		}
 
 		_body.append(storyDiv);
-		storyDiv.draggable({
-			containment: 'body',
-			drag: dragUpdateStory
-		});
+
+		taskboard.makeDraggable(storyDiv);
 	}
 
 	var _timeStamp = new Date();
