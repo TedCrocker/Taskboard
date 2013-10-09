@@ -56,11 +56,18 @@
 
 	});
 
-	taskboard.makeDraggable = function(element)
+	taskboard.makeDraggable = function(element, dragCallback)
 	{
 		element.draggable({
 			start: draggableStart,
-			drag: draggableDrag
+			drag: function()
+			{
+				draggableDrag.apply(this, arguments);
+				if (dragCallback)
+				{
+					dragCallback.apply(this, arguments);
+				}
+			}
 		});
 		$('body').selectable({
 			filter: '.task,.story'

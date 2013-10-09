@@ -35,13 +35,8 @@
 		taskDiv.append(assignedToHidden);
 
 		_body.append(taskDiv);
-		/*
-		taskDiv.draggable({
-			containment: "body",
-			drag: dragUpdateTask
-		});
-		*/
-		taskboard.makeDraggable(taskDiv);
+	
+		taskboard.makeDraggable(taskDiv, dragUpdateTask);
 	}
 
 	var timeStamp = new Date();

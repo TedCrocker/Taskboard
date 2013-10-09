@@ -52,7 +52,7 @@
 
 		_body.append(storyDiv);
 
-		taskboard.makeDraggable(storyDiv);
+		taskboard.makeDraggable(storyDiv, dragUpdateStory);
 	}
 
 	var _timeStamp = new Date();
