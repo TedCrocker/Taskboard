@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.WindowsAzure.Storage;
@@ -13,13 +14,14 @@ namespace Taskboard.DataAccess
 		private readonly CloudTable _table;
 		private static readonly HashSet<T> _entities = new HashSet<T>();
 
-		public AzureTableRepository(string connectionString = "UseDevelopmentStorage=true")
+		public AzureTableRepository()
 		{
+			var connectionString = ConfigurationManager.ConnectionStrings["AzureStorage"].ConnectionString;
 			var storageAccount = CloudStorageAccount.Parse(connectionString);
 			var client = storageAccount.CreateCloudTableClient();
 			_table = client.GetTableReference("Tasks");
 			_table.CreateIfNotExists();
-		}
+		} 
 
 		public void Add(T entity)
 		{

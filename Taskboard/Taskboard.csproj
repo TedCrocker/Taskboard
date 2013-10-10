@@ -297,6 +297,7 @@
     <Content Include="Scripts\events.js" />
     <Content Include="Scripts\hubs\chatHub.js" />
     <Content Include="Scripts\hubs\Hub.js" />
+    <None Include="Properties\PublishProfiles\twtasks.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\interfaceController.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -316,12 +317,15 @@
     <Content Include="Scripts\storyController.js" />
     <Content Include="Scripts\taskController.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
