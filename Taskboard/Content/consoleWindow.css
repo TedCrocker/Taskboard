@@ -2,10 +2,10 @@
   padding: 0.5em;
   background-color: #AFAFAF;
   border-radius: 1em;
-  height: 15em;
-  width: 30em;
+  height: 10em;
+  width: 25em;
   position: absolute;
-  left: 0px;
+  right: 0px;
   bottom: 0px; }
   #consoleOutput #discussion,
   #consoleOutput #message {
@@ -17,7 +17,7 @@
   #consoleOutput #discussion {
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
-    height: 12.5em;
+    height: 7.5em;
     overflow-y: scroll; }
   #consoleOutput #message {
     border-bottom-left-radius: 1em;
