@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Taskboard.DataAccess;
 
 namespace Taskboard.Controllers
 {
 	public class MainController : Controller
 	{
-		//
-		// GET: /Main/
+		private IUserManager _userManager;
+
+		public MainController(IUserManager userManager)
+		{
+			_userManager = userManager;
+		}
+
 
 		public ActionResult Index()
 		{
+			ViewBag.DisplayName = _userManager.DisplayName;
 			return View();
 		}
 

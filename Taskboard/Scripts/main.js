@@ -2,8 +2,6 @@
 {
 	$(document).ready(function ()
 	{
-		taskboard.displayName = "Ted Crocker";//Fix this later
-
 		$.connection.hub.start().done(function ()
 		{
 			events.publish(events.connection.started);
