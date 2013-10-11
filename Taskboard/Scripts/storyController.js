@@ -18,7 +18,6 @@
 		storyDiv.attr('id', 'story-' + event.data.Id);
 		storyDiv.css('left', event.data.left);
 		storyDiv.css('top', event.data.top);
-		
 
 		var textArea = $('<textarea/>').text(event.data.content).addClass('content');
 		storyDiv.append(textArea);
@@ -174,7 +173,7 @@
 		events.publish("events.story.add");
 	});
 	
-	_body.on("keyup", ".story textArea",	 updateStory);
+	_body.on("keyup",  ".story textArea",	 updateStory);
 	_body.on("click",  ".story .deleteStory", deleteStory);
 	_body.on("click",  ".story .openStory",	 openStory);
 	_body.on("click",  ".story .closeStory",	 closeStory);
