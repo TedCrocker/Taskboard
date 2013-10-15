@@ -189,7 +189,7 @@
     <Compile Include="DataAccess\AzureEntity.cs" />
     <Compile Include="DataAccess\AzureTableRepository.cs" />
     <Compile Include="DataAccess\ElasticTableItem.cs" />
-    <Compile Include="DataAccess\FormsAuthenticationUserManager.cs" />
+    <Compile Include="DataAccess\DummyFormsAuthenticationUserManager.cs" />
     <Compile Include="DataAccess\IDataRepository.cs" />
     <Compile Include="DataAccess\IUserManager.cs" />
     <Compile Include="DataAccess\ShortGuid.cs" />
