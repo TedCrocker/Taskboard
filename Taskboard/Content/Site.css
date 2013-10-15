@@ -98,7 +98,8 @@ body {
     text-align: center;
     border: 0;
     resize: none;
-    background-color: transparent; }
+    background-color: transparent;
+    font-size: .82em; }
   .task .deleteTask,
   .task .openTask,
   .task .closeTask {
