@@ -67,8 +67,7 @@
 				{
 					dragCallback.apply(this, arguments);
 				}
-			},
-			containment: 'body'
+			}
 		});
 		$('body').selectable({
 			filter: '.task,.story'
