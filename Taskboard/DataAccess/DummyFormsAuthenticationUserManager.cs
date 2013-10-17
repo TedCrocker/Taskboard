@@ -16,6 +16,7 @@ namespace Taskboard.DataAccess
 				{
 					return httpCookie.Value;
 				}
+				
 				return "";
 			}
 		}

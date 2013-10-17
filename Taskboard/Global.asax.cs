@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
+using Ninject;
+using Taskboard.DataAccess;
 
 namespace Taskboard
 {
@@ -15,6 +17,9 @@ namespace Taskboard
 
 	public class MvcApplication : System.Web.HttpApplication
 	{
+		[Inject]
+		public IUserManager UserManager { get; set; }
+
 		protected void Application_Start()
 		{
 			var config = TaskboardConfigSection.Instance;
@@ -25,6 +30,15 @@ namespace Taskboard
 			DependencyConfig.SetupDependencies();
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+		}
+
+		protected void Application_BeginRequest(object sender, EventArgs e)
+		{
+			if (User != null && User.Identity != null && User.Identity.IsAuthenticated && string.IsNullOrEmpty(UserManager.DisplayName))
+			{
+				UserManager.Unauthenticate();
+				Response.RedirectToRoute(new { controller = "Account", action = "Index"});
+			}
 		}
 	}
 }
