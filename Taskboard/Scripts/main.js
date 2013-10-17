@@ -1,5 +1,6 @@
 ﻿(function (taskboard, events, $)
 {
+	taskboard.model = {};
 	$(document).ready(function ()
 	{
 		$.connection.hub.start().done(function ()

@@ -5,12 +5,15 @@
 
 	function taskReceived(event)
 	{
+		var data = event.data;
+		taskboard.model[data.ID] = data;
+
 		var taskDiv = $("<div/>").addClass("task");
-		taskDiv.attr("id", "task-" + event.data.Id);
-		taskDiv.css("left", event.data.left);
-		taskDiv.css("top", event.data.top);
+		taskDiv.attr("id", "task-" + data.Id);
+		taskDiv.css("left", data.left);
+		taskDiv.css("top", data.top);
 		
-		var textArea = $("<textarea/>").text(event.data.content).addClass('content');
+		var textArea = $("<textarea/>").text(data.content).addClass('content');
 		taskDiv.append(textArea);
 
 		var deleteButton = $("<button/>").text("X").addClass("deleteTask");
@@ -22,20 +25,20 @@
 		var closeButton = $("<button/>").text("Close").addClass("closeTask");
 		taskDiv.append(closeButton);
 
-		if (event.data.workFlowState == 1)
+		if (data.workFlowState == 1)
 		{
 			taskDiv.addClass("open");
 		}
-		else if (event.data.workFlowState == 2)
+		else if (data.workFlowState == 2)
 		{
 			taskDiv.addClass("closed");
 		}
 
-		var assignedToHidden = $("<div/>").addClass("assignedTo").text(event.data.assignedTo == null ? "" : event.data.assignedTo);
+		var assignedToHidden = $("<div/>").addClass("assignedTo").text(data.assignedTo == null ? "" : data.assignedTo);
 		taskDiv.append(assignedToHidden);
 
 		_body.append(taskDiv);
-	
+
 		taskboard.makeDraggable(taskDiv, dragUpdateTask);
 	}
 
@@ -52,7 +55,7 @@
 	function updateTask()
 	{
 		var taskDiv = $(this).parent();
-
+		
 		var state = 0;
 		if (taskDiv.hasClass('open'))
 		{
@@ -99,29 +102,32 @@
 
 	function taskUpdated(event)
 	{
-		var taskDiv = $('#task-' + event.data.Id);
-		taskDiv.css("left", event.data.left);
-		taskDiv.css("top", event.data.top);
-		taskDiv.find("textarea").val(event.data.content);
+		var data = event.data;
+		taskboard.model[data.Id] = data;
+		var taskDiv = $('#task-' + data.Id);
+		taskDiv.css("left", data.left);
+		taskDiv.css("top", data.top);
+		taskDiv.find("textarea").val(data.content);
 
 		taskDiv.removeClass("closed");
 		taskDiv.removeClass("open");
-		if (event.data.workFlowState == 1)
+		if (data.workFlowState == 1)
 		{
 			taskDiv.addClass("open");
 		}
-		else if (event.data.workFlowState == 2)
+		else if (data.workFlowState == 2)
 		{
 			taskDiv.addClass("closed");
 		}
-		if (event.data.assignedTo)
+		if (data.assignedTo)
 		{
-			taskDiv.find(".assignedTo").text(event.data.assignedTo); 
+			taskDiv.find(".assignedTo").text(data.assignedTo); 
 		}
 	}
 	
 	function taskDeleted(event)
 	{
+		delete taskboard.model[event.data.Id];
 		var taskDiv = $('#task-' + event.data.Id);
 		taskDiv.remove();
 	}
