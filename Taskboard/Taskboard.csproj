@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JavascriptPrecompiler">
+      <HintPath>..\Thirdparty\JavascriptPrecompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic">
+      <HintPath>..\Thirdparty\Jurassic.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.1.3\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -336,6 +342,7 @@
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Templates\story.dust" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

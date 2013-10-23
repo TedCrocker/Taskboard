@@ -1,0 +1,9 @@
+﻿<div class="task {@if cond="{workflowState} == 2"}closed{/if}" id="task-{id}" style="top:{top};left:{left};">
+	<textarea class="content"></textarea>
+	<button class="deleteTask">X</button>
+	<button class="openTask">Open</button>
+	<button class="closeTask">Close</button>
+	<div class="assignedTo">
+		{assignedTo}
+	</div>
+</div>
