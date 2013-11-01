@@ -1,9 +1,20 @@
-﻿<div class="task {@if cond="{workflowState} == 2"}closed{/if}" id="task-{id}" style="top:{top};left:{left};">
-	<textarea class="content"></textarea>
-	<button class="deleteTask">X</button>
-	<button class="openTask">Open</button>
-	<button class="closeTask">Close</button>
-	<div class="assignedTo">
-		{assignedTo}
+﻿<div class="story {stateClass}" style="top={top}px;left={left}px;" id="story-{Id}">
+	<textarea class="content">{content}</textarea>
+	<button class="deleteStory">X</button>
+	<button class="openStory">Open</button>
+	<button class="closeStory">Close</button>
+	<div class="openDate">
+		{opened}
 	</div>
+	<div class="closeDate">
+		{closed}
+	</div>
+	<select class="size">
+		<option value=""></option>
+		<option value="1">XS</option>
+		<option value="2">S</option>
+		<option value="4">M</option>
+		<option value="8">L</option>
+		<option value="16">XL</option>
+	</select>
 </div>

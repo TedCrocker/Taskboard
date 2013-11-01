@@ -4,54 +4,41 @@
 	var _body = $('body');
 	var _dateDisplayFormat = "DD/MM/YY A";
 
-	var _sizeDropdown = $('<select/>').addClass('size');
-	_sizeDropdown.append($('<option/>').val('').text(''));
-	_sizeDropdown.append($('<option/>').val(1).text('XS'));
-	_sizeDropdown.append($('<option/>').val(2).text('S'));
-	_sizeDropdown.append($('<option/>').val(4).text('M'));
-	_sizeDropdown.append($('<option/>').val(8).text('L'));
-	_sizeDropdown.append($('<option/>').val(16).text('XL'));
-
 	function storyReceived(event)
 	{
-		var storyDiv = $('<div/>').addClass('story');
-		storyDiv.attr('id', 'story-' + event.data.Id);
-		storyDiv.css('left', event.data.left);
-		storyDiv.css('top', event.data.top);
-
-		var textArea = $('<textarea/>').text(event.data.content).addClass('content');
-		storyDiv.append(textArea);
-
-		var deleteButton = $('<button/>').text('X').addClass('deleteStory');
-		storyDiv.append(deleteButton);
-
-		var openButton = $('<button/>').text('Open').addClass('openStory');
-		storyDiv.append(openButton);
-
-		var closeButton = $('<button/>').text('Close').addClass('closeStory');
-		storyDiv.append(closeButton);
-
-		var openDate = $('<div/>').text(event.data.opened == null ? '' : moment(event.data.opened).format(_dateDisplayFormat)).addClass('openDate');
-		storyDiv.append(openDate);
+		if (event.data.opened != null)
+		{
+			event.data.opened = moment(event.data.opened).format(_dateDisplayFormat);
+		}
+		else
+		{
+			event.data.opened = '';
+		}
 		
-		var closeDate = $('<div/>').text(event.data.closed == null ? '' : moment(event.data.closed).format(_dateDisplayFormat)).addClass('closeDate');
-		storyDiv.append(closeDate);
-
-		storyDiv.append(_sizeDropdown.clone());
-
+		if (event.data.closed != null)
+		{
+			event.data.closed = moment(event.data.closed).format(_dateDisplayFormat);
+		}
+		else
+		{
+			event.data.closed = '';
+		}
 
 		if (event.data.workFlowState == 1)
 		{
-			storyDiv.addClass('open');
+			event.data.stateClass = 'open';
 		}
 		else if (event.data.workFlowState == 2)
 		{
-			storyDiv.addClass('closed');
+			event.data.stateClass = 'closed';
 		}
 
-		_body.append(storyDiv);
-
-		taskboard.makeDraggable(storyDiv, dragUpdateStory);
+		dust.render("story", event.data, function(err, output)
+		{
+			var $output = $(output);
+			_body.append($output);
+			taskboard.makeDraggable($output, dragUpdateStory);
+		});
 	}
 
 	var _timeStamp = new Date();

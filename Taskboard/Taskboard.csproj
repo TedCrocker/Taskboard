@@ -41,7 +41,7 @@
   <ItemGroup>
     <Reference Include="JavascriptPrecompiler, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\JavascriptPrecompiler.1.0.0\lib\net40\JavascriptPrecompiler.dll</HintPath>
+      <HintPath>..\packages\JavascriptPrecompiler.1.0.0.1\lib\net40\JavascriptPrecompiler.dll</HintPath>
     </Reference>
     <Reference Include="Jurassic, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
