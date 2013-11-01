@@ -37,6 +37,8 @@
 		{
 			var $output = $(output);
 			_body.append($output);
+			$output.css('left', event.data.left);
+			$output.css('top', event.data.top);
 			taskboard.makeDraggable($output, dragUpdateStory);
 		});
 	}
