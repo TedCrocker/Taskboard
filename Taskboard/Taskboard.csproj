@@ -313,6 +313,7 @@
     <None Include="Properties\PublishProfiles\twtasks.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\interfaceController.js" />
+    <Content Include="Scripts\issueController.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />

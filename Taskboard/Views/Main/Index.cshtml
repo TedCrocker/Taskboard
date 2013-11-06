@@ -9,11 +9,12 @@
 
 	<button id="addTask">Add Task</button>
 	<button id="addStory">Add Story</button>
+	<button id="addIssue">Add Issue</button>
 
-	<div id="consoleOutput">
+	<div id="consoleOutput" style="display:none;">
 		<ul id="discussion"></ul>
 		<input type="text" id="message" />
-	</div>sB
+	</div>
 </div>
 
 @section scripts
@@ -24,7 +25,13 @@
 
 	</script>
 
-	@Precompiler.DustJS().IncludeLibrary().Add("story", "~/Templates/story.dust").Add("task", "~/Templates/task.dust").Compile()
+	@(Precompiler
+		.DustJS()
+		.IncludeLibrary()
+		.Add("story", "~/Templates/story.dust")
+		.Add("task", "~/Templates/task.dust")
+		.Add("issue", "~/Templates/issue.dust")
+		.Compile())
 
 	<script src="~/Scripts/jquery.signalR-1.1.3.js"></script>
 	<script src="~/signalr/hubs"></script>
@@ -36,6 +43,7 @@
 	<script src="~/Scripts/interfaceController.js"></script>
 	<script src="~/Scripts/taskController.js"></script>
 	<script src="~/Scripts/storyController.js"></script>
+	<script src="~/Scripts/issueController.js"></script>
 
 	<script src="~/Scripts/main.js"></script>
 }

@@ -13,7 +13,8 @@ body
 }
 
 #addStory,
-#addTask
+#addTask,
+#addIssue
 {
 	position: absolute;
 	left: 0px;
@@ -34,6 +35,12 @@ body
 {
 	position: absolute;
 	top: 3em;
+}
+
+#addIssue
+{
+	position: absolute;
+	top: 6em;
 }
 
 @import "consoleWindow";

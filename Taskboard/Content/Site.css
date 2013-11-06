@@ -38,7 +38,8 @@ body {
   box-sizing: border-box; }
 
 #addStory,
-#addTask {
+#addTask,
+#addIssue {
   position: absolute;
   left: 0px;
   height: 3em;
@@ -54,6 +55,10 @@ body {
 #addTask {
   position: absolute;
   top: 3em; }
+
+#addIssue {
+  position: absolute;
+  top: 6em; }
 
 #consoleOutput {
   padding: 0.5em;
