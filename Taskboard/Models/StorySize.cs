@@ -2,6 +2,7 @@
 {
 	public enum StorySize
 	{
+		Unsized = 0,
 		XS = 1,
 		S = 2,
 		M = 4,

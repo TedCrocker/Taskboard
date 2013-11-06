@@ -15,7 +15,27 @@ namespace Taskboard.DataAccess
 			var type = GetType();
 			foreach (var keyValue in properties)
 			{
-				type.GetProperty(keyValue.Key).SetValue(this, GetEntityPropertyValue(keyValue.Value), null);
+				var propInfo = type.GetProperty(keyValue.Key);
+				var propertyType = propInfo.PropertyType;
+				var nullable = false;
+
+				if (Nullable.GetUnderlyingType(propertyType) != null)
+				{
+					nullable = true;
+					propertyType = Nullable.GetUnderlyingType(propertyType);
+				}
+
+				object value = null;
+				if (propertyType.IsEnum)
+				{
+					value = Enum.Parse(propertyType, keyValue.Value.Int32Value.ToString());
+				}
+				else
+				{
+					value = GetEntityPropertyValue(keyValue.Value);
+				}
+
+				propInfo.SetValue(this, value, null);
 			}
 		}
 		

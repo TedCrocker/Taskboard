@@ -39,6 +39,7 @@
 			_body.append($output);
 			$output.css('left', event.data.left);
 			$output.css('top', event.data.top);
+			$output.find('.size').val(event.data.size);
 			taskboard.makeDraggable($output, dragUpdateStory);
 		});
 	}
@@ -119,6 +120,8 @@
 		var openDate = getDate(storyDiv.find('.openDate').text());
 		var closeDate = getDate(storyDiv.find('.closeDate').text());
 
+		var size = storyDiv.find('.size').val();
+
 		var data = {
 			Id: storyDiv.attr('id').substring(6),
 			left: parseInt(storyDiv.css('left'), 10),
@@ -126,7 +129,8 @@
 			content: storyDiv.find('.content').val(),
 			workFlowState: state,
 			opened: openDate,
-			closed: closeDate
+			closed: closeDate,
+			size: size
 		};
 
 		events.publish("events.story.update", data);

@@ -10,7 +10,7 @@
 		{closed}
 	</div>
 	<select class="size">
-		<option value=""></option>
+		<option value="0"></option>
 		<option value="1">XS</option>
 		<option value="2">S</option>
 		<option value="4">M</option>
