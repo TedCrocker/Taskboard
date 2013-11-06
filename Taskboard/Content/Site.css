@@ -60,12 +60,14 @@ body {
 #addRedIssue {
   background-color: red;
   position: absolute;
-  top: 6em; }
+  top: 0em;
+  left: 3em; }
 
 #addBlueIssue {
   background-color: blue;
   position: absolute;
-  top: 9em; }
+  top: 3em;
+  left: 3em; }
 
 #consoleOutput {
   padding: 0.5em;
