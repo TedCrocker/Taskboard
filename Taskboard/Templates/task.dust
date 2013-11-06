@@ -1,4 +1,4 @@
-﻿<div class="task {stateCss}" id="task-{Id}">
+﻿<div class="task {stateClass}" id="task-{Id}">
 	<textarea class="content">{content}</textarea>
 	<button class="deleteTask">X</button>
 	<button class="openTask">Open</button>
