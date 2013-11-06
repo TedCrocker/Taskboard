@@ -10,6 +10,7 @@
 
 		var taskHub = new taskboard.Hub("task");
 		var storyHub = new taskboard.Hub("story");
+		var issueHub = new taskboard.Hub("issue");
 	});
 	
 })(	window.taskboard = window.taskboard || {},

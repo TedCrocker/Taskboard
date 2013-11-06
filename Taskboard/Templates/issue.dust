@@ -1,0 +1,7 @@
+﻿<div class="issue {color}">
+	<textarea class="content">{content}</textarea>
+	<button class="openIssue">Open</button>
+	<button class="closeIssue">Close</button>
+	<button class="removeIssue">X</button>
+	<div class="assignedTo">{assignedTo}</div>
+</div>

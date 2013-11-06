@@ -206,11 +206,14 @@
     </Compile>
     <Compile Include="Hubs\BaseHub.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Hubs\IssueHub.cs" />
     <Compile Include="Hubs\StoryHub.cs" />
     <Compile Include="Hubs\TaskHub.cs" />
+    <Compile Include="Models\Issue.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Models\StorySize.cs" />
     <Compile Include="Models\TaskItem.cs" />
+    <Compile Include="Models\WebObject.cs" />
     <Compile Include="Models\WorkFlowState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -346,6 +349,7 @@
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Templates\story.dust" />
     <Content Include="Templates\task.dust" />
+    <Content Include="Templates\issue.dust" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
