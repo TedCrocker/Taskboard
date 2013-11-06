@@ -1,7 +1,10 @@
 ﻿(function (taskboard, events, $)
 {
+	var selectors = '.story,.task,.issue';
 	var selected = $([]);
 	var _offset = { top: 0, left: 0 };
+	var _dragCallbacks = {};
+
 
 	function draggableStart(event, ui)
 	{
@@ -16,7 +19,7 @@
 		else
 		{
 			selected = $([]);
-			$('.story,.task').removeClass('ui-selected');
+			$(selectors).removeClass('ui-selected');
 		}
 		_offset = $(this).offset();
 	}
@@ -31,15 +34,16 @@
 			var element = $(this);
 			var offset = element.data('offset');
 			element.css({ top: offset.top + dt, left: offset.left + dl });
+			_dragCallbacks[element.attr('id')].apply(this);
 		});
 	}
 
-	$('.task,.story').on('click', function (e)
+	$(selectors).on('click', function (e)
 	{
 		var $this = $(this);
 		if (!e.metaKey && !e.shiftKey)
 		{
-			$('.task,.story').removeClass('ui-selected');
+			$(selectors).removeClass('ui-selected');
 			$this.addClass('ui-selected');
 		}
 		else
@@ -56,8 +60,14 @@
 
 	});
 
+
 	taskboard.makeDraggable = function(element, dragCallback)
 	{
+		if (dragCallback)
+		{
+			_dragCallbacks[element.attr('id')] = dragCallback;
+		}
+
 		element.draggable({
 			start: draggableStart,
 			drag: function()
@@ -70,7 +80,7 @@
 			}
 		});
 		$('body').selectable({
-			filter: '.task,.story'
+			filter: selectors
 		});
 	};
 	

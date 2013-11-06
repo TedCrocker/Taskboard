@@ -3,6 +3,7 @@
 	var _addStoryButton = $('#addStory');
 	var _body = $('body');
 	var _dateDisplayFormat = "DD/MM/YY A";
+	var _timeStamps = {};
 
 	function storyReceived(event)
 	{
@@ -41,16 +42,16 @@
 			$output.css('top', event.data.top);
 			$output.find('.size').val(event.data.size);
 			taskboard.makeDraggable($output, dragUpdateStory);
+			_timeStamps[$output.attr('id')] = new Date();
 		});
 	}
 
-	var _timeStamp = new Date();
 	function dragUpdateStory()
 	{
-		if (new Date() - _timeStamp > 100)
+		if (new Date() - _timeStamps[$(this).attr('id')] > 50)
 		{
 			updateStory.apply($(this).find('textarea'));
-			_timeStamp = new Date();
+			_timeStamps[$(this).attr('id')] = new Date();
 		}
 	}
 

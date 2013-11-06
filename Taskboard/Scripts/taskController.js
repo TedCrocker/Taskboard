@@ -1,7 +1,8 @@
-﻿(function (taskboard, events, $)
+﻿(function(taskboard, events, $)
 {
 	var _addTaskButton = $('#addTask');
 	var _body = $('body');
+	var _timeStamps = {};
 
 	function taskReceived(event)
 	{
@@ -23,16 +24,16 @@
 			$output.css('left', event.data.left);
 			$output.css('top', event.data.top);
 			taskboard.makeDraggable($output, dragUpdateTask);
+			_timeStamps[$output.attr('id')] = new Date();
 		});
 	}
 
-	var timeStamp = new Date();
 	function dragUpdateTask()
 	{
-		if (new Date() - timeStamp > 100)
+		if (new Date() - _timeStamps[$(this).attr('id')] > 50)
 		{
 			updateTask.apply($(this).find("textarea"));
-			timeStamp = new Date();
+			_timeStamps[$(this).attr('id')] = new Date();
 		}
 	}
 	

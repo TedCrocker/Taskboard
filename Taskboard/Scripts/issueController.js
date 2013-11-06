@@ -3,6 +3,7 @@
 	var _addRedIssueButton = $('#addRedIssue');
 	var _addBlueIssueButton = $('#addBlueIssue');
 	var _body = $('body');
+	var _timeStamps = {};
 
 	function issueReceived(event)
 	{
@@ -24,16 +25,16 @@
 			$output.css('left', event.data.left);
 			$output.css('top', event.data.top);
 			taskboard.makeDraggable($output, dragUpdateIssue);
+			_timeStamps[$output.attr('id')] = new Date();
 		});
 	}
 
-	var timeStamp = new Date();
 	function dragUpdateIssue()
 	{
-		if (new Date() - timeStamp > 100)
+		if (new Date() - _timeStamps[$(this).attr('id')] > 50)
 		{
 			updateIssue.apply($(this).find("textarea"));
-			timeStamp = new Date();
+			_timeStamps[$(this).attr('id')] = new Date();
 		}
 	}
 
