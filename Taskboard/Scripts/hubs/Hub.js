@@ -37,7 +37,14 @@
 		
 		events.subscribe("events." + _hubName + ".add", function (e)
 		{
-			_server.add();
+			if (e.data)
+			{
+				_server.add(e.data);
+			}
+			else
+			{
+				_server.add();
+			}
 		});
 
 		events.subscribe(events.connection.started, function (e)

@@ -9,6 +9,21 @@
 	font-family: arial;
 	font-weight: bold;
 
+	&.blue
+	{
+		color: blue;
+	}
+
+	&.red
+	{
+		color: red;
+	}
+
+	&.closed .content
+	{
+		text-decoration: line-through;
+	}
+
 	.content
 	{
 		background: transparent;
@@ -20,12 +35,11 @@
 		text-align: left;
 		border: 0;
 		resize: none;
-		color: red;
+		color: inherit;
 	}
 
 	.assignedTo
 	{
-		color: red;
 		position: absolute;
 		top: 22%;
 		left: 0%;
@@ -70,7 +84,7 @@
 
 	&:hover
 	{
-		background-color: #1F1F1F;
+		background-color: #AFAFAF;
 
 		.deleteIssue,
 		.closeIssue,

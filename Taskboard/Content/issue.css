@@ -6,6 +6,12 @@
   padding: 0.5em;
   font-family: arial;
   font-weight: bold; }
+  .issue.blue {
+    color: blue; }
+  .issue.red {
+    color: red; }
+  .issue.closed .content {
+    text-decoration: line-through; }
   .issue .content {
     background: transparent;
     position: absolute;
@@ -16,9 +22,8 @@
     text-align: left;
     border: 0;
     resize: none;
-    color: red; }
+    color: inherit; }
   .issue .assignedTo {
-    color: red;
     position: absolute;
     top: 22%;
     left: 0%; }
@@ -48,7 +53,7 @@
   .issue .deleteIssue {
     left: 30%; }
   .issue:hover {
-    background-color: #1F1F1F; }
+    background-color: #AFAFAF; }
     .issue:hover .deleteIssue,
     .issue:hover .closeIssue,
     .issue:hover .openIssue {

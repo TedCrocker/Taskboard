@@ -6,5 +6,7 @@ namespace Taskboard.Models
 	{
 		[JsonProperty("assignedTo")]
 		public string AssignedTo { get; set; }
+		[JsonProperty("color")]
+		public string Color { get; set; }
 	}
 }

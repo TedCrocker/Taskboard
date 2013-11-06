@@ -12,13 +12,19 @@ namespace Taskboard.Hubs
 
 		public override void Add()
 		{
+			Add("red");
+		}
+
+		public void Add(string color)
+		{
 			var issue = new Issue()
-				{
-					Id = ShortGuid.Get(),
-					Left = 400,
-					Top = 300,
-					Content = "Issue",
-				};
+			{
+				Id = ShortGuid.Get(),
+				Left = 400,
+				Top = 300,
+				Content = "Issue",
+				Color = color
+			};
 
 			_repository.Add(issue);
 			Clients.All.add(issue);

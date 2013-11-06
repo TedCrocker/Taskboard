@@ -1,6 +1,7 @@
 ﻿(function (taskboard, events, $)
 {
-	var _addIssueButton = $('#addIssue');
+	var _addRedIssueButton = $('#addRedIssue');
+	var _addBlueIssueButton = $('#addBlueIssue');
 	var _body = $('body');
 
 	function issueReceived(event)
@@ -124,9 +125,14 @@
 		}
 	}
 
-	_addIssueButton.on("click", function ()
+	_addBlueIssueButton.on("click", function ()
 	{
-		events.publish("events.issue.add");
+		events.publish("events.issue.add", "blue");
+	});
+	
+	_addRedIssueButton.on("click", function ()
+	{
+		events.publish("events.issue.add", "red");
 	});
 
 	_body.on("change", ".issue textArea", updateIssue);

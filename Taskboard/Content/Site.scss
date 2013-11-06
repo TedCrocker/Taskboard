@@ -14,7 +14,8 @@ body
 
 #addStory,
 #addTask,
-#addIssue
+#addRedIssue,
+#addBlueIssue
 {
 	position: absolute;
 	left: 0px;
@@ -37,10 +38,18 @@ body
 	top: 3em;
 }
 
-#addIssue
+#addRedIssue
 {
+	background-color: red;
 	position: absolute;
 	top: 6em;
+}
+
+#addBlueIssue
+{
+	background-color: blue;
+	position: absolute;
+	top: 9em;
 }
 
 @import "consoleWindow";
