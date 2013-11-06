@@ -166,7 +166,8 @@
 		events.publish("events.story.add");
 	});
 	
-	_body.on("keyup",  ".story textArea",	 updateStory);
+	_body.on("keyup", ".story textArea", updateStory);
+	_body.on("change", ".story .size", updateStory);
 	_body.on("click",  ".story .deleteStory", deleteStory);
 	_body.on("click",  ".story .openStory",	 openStory);
 	_body.on("click",  ".story .closeStory",	 closeStory);
