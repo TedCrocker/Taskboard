@@ -22,12 +22,12 @@
 			_body.append($output);
 			$output.css('left', event.data.left);
 			$output.css('top', event.data.top);
-			taskboard.makeDraggable($output, dragUpdateTask);
+			taskboard.makeDraggable($output, dragUpdateIssue);
 		});
 	}
 
 	var timeStamp = new Date();
-	function dragUpdateTask()
+	function dragUpdateIssue()
 	{
 		if (new Date() - timeStamp > 100)
 		{
@@ -64,7 +64,7 @@
 
 	function deleteIssue()
 	{
-		var data = { Id: $(this).parent().attr('id').substring(5) };
+		var data = { Id: $(this).parent().attr('id').substring(6) };
 		events.publish("events.issue.remove", data);
 	}
 
@@ -73,7 +73,7 @@
 		var parent = $(this).parent();
 		parent.addClass('open');
 		parent.find('.assignedTo').text(taskboard.displayName.match(/([A-Z])/g).join(''));
-		updateTask.apply(this);
+		updateIssue.apply(this);
 	}
 
 	function closeIssue()
@@ -130,9 +130,9 @@
 	});
 
 	_body.on("change", ".issue textArea", updateIssue);
-	_body.on("click", ".issue .deleteTask", deleteIssue);
-	_body.on("click", ".issue .openTask", openIssue);
-	_body.on("click", ".issue .closeTask", closeIssue);
+	_body.on("click", ".issue .deleteIssue", deleteIssue);
+	_body.on("click", ".issue .openIssue", openIssue);
+	_body.on("click", ".issue .closeIssue", closeIssue);
 
 	events.subscribe("events.issue.added", issueReceived);
 	events.subscribe("events.issue.updated", issueUpdated);

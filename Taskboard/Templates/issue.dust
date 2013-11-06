@@ -1,7 +1,7 @@
-﻿<div class="issue {color}">
+﻿<div class="issue {color}" id="issue-{Id}">
 	<textarea class="content">{content}</textarea>
 	<button class="openIssue">Open</button>
 	<button class="closeIssue">Close</button>
-	<button class="removeIssue">X</button>
+	<button class="deleteIssue">X</button>
 	<div class="assignedTo">{assignedTo}</div>
 </div>

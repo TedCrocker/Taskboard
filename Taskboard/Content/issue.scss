@@ -1,0 +1,82 @@
+.issue
+{
+	background-color: transparent;
+	width: 15em;
+	height: 4em;
+	position: absolute;
+	padding: 0.5em;
+
+	font-family: arial;
+	font-weight: bold;
+
+	.content
+	{
+		background: transparent;
+		position: absolute;
+		top: 15%;
+		left: 10%;
+		width: 85%;
+		min-height: 70%;
+		text-align: left;
+		border: 0;
+		resize: none;
+		color: red;
+	}
+
+	.assignedTo
+	{
+		color: red;
+		position: absolute;
+		top: 22%;
+		left: 0%;
+	}
+
+	.closeIssue,
+	.openIssue,
+	.deleteIssue
+	{
+		display: none;
+		position: absolute;
+		height: 18%;
+		width: 12%;
+		font-size: 0.5em;
+		padding: 0;
+		border: 0;
+		top: 1%;
+
+		&:hover
+		{
+			background-color: darken(#F0F0F0, 10%);
+		}
+
+		&:hover:active
+		{
+			background-color: darken(#F0F0F0, 20%);
+		}
+	}
+
+	.closeIssue
+	{
+		left: 5%;
+	}
+	.openIssue
+	{
+		left: 17.5%;
+	}
+	.deleteIssue
+	{
+		left: 30%;
+	}
+
+	&:hover
+	{
+		background-color: #1F1F1F;
+
+		.deleteIssue,
+		.closeIssue,
+		.openIssue
+		{
+			display: block;
+		}
+	}
+}
