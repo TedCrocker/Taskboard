@@ -6,40 +6,24 @@
 	function taskReceived(event)
 	{
 		var data = event.data;
-		taskboard.model[data.ID] = data;
-
-		var taskDiv = $("<div/>").addClass("task");
-		taskDiv.attr("id", "task-" + data.Id);
-		taskDiv.css("left", data.left);
-		taskDiv.css("top", data.top);
-		
-		var textArea = $("<textarea/>").text(data.content).addClass('content');
-		taskDiv.append(textArea);
-
-		var deleteButton = $("<button/>").text("X").addClass("deleteTask");
-		taskDiv.append(deleteButton);
-
-		var openButton = $("<button/>").text("Open").addClass("openTask");
-		taskDiv.append(openButton);
-		
-		var closeButton = $("<button/>").text("Close").addClass("closeTask");
-		taskDiv.append(closeButton);
-
+	
 		if (data.workFlowState == 1)
 		{
-			taskDiv.addClass("open");
+			event.data.stateClass = "open";
 		}
 		else if (data.workFlowState == 2)
 		{
-			taskDiv.addClass("closed");
+			event.data.stateClass = "closed";
 		}
-
-		var assignedToHidden = $("<div/>").addClass("assignedTo").text(data.assignedTo == null ? "" : data.assignedTo);
-		taskDiv.append(assignedToHidden);
-
-		_body.append(taskDiv);
-
-		taskboard.makeDraggable(taskDiv, dragUpdateTask);
+		
+		dust.render("task", event.data, function(err, output)
+		{
+			var $output = $(output);
+			_body.append($output);
+			$output.css('left', event.data.left);
+			$output.css('top', event.data.top);
+			taskboard.makeDraggable($output, dragUpdateTask);
+		});
 	}
 
 	var timeStamp = new Date();

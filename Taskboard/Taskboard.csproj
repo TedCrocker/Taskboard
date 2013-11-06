@@ -345,6 +345,7 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Templates\story.dust" />
+    <Content Include="Templates\task.dust" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
