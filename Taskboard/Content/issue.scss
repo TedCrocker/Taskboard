@@ -28,8 +28,8 @@
 	{
 		background: transparent;
 		position: absolute;
-		top: 15%;
-		left: 10%;
+		top: 1em;
+		left: 2em;
 		width: 85%;
 		min-height: 70%;
 		text-align: left;
@@ -41,7 +41,7 @@
 	.assignedTo
 	{
 		position: absolute;
-		top: 22%;
+		top: 1.1em;
 		left: 0%;
 	}
 
@@ -51,12 +51,12 @@
 	{
 		display: none;
 		position: absolute;
-		height: 18%;
-		width: 12%;
+		height: 1.6em;
+		width: 3em;
 		font-size: 0.5em;
 		padding: 0;
 		border: 0;
-		top: 1%;
+		top: .5em;
 
 		&:hover
 		{
@@ -71,15 +71,15 @@
 
 	.closeIssue
 	{
-		left: 5%;
+		left: .5em;
 	}
 	.openIssue
 	{
-		left: 17.5%;
+		left: 4em;
 	}
 	.deleteIssue
 	{
-		left: 30%;
+		left: 7.5em;
 	}
 
 	&:hover

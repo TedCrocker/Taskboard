@@ -26,6 +26,7 @@
 			$output.css('top', event.data.top);
 			taskboard.makeDraggable($output, dragUpdateIssue);
 			_timeStamps[$output.attr('id')] = new Date();
+			$output.resizable();
 		});
 	}
 
