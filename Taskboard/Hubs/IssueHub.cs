@@ -23,7 +23,9 @@ namespace Taskboard.Hubs
 				Left = 400,
 				Top = 300,
 				Content = "Issue",
-				Color = color
+				Color = color,
+				Width = 300,
+				Height = 70
 			};
 
 			_repository.Add(issue);
