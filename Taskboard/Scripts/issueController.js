@@ -26,7 +26,9 @@
 			$output.css('top', event.data.top);
 			taskboard.makeDraggable($output, dragUpdateIssue);
 			_timeStamps[$output.attr('id')] = new Date();
-			$output.resizable();
+			$output.resizable({ resize: dragUpdateIssue });
+			$output.height(event.data.height);
+			$output.width(event.data.width);
 		});
 	}
 
@@ -59,7 +61,9 @@
 			top: parseInt(issueDiv.css('top'), 10),
 			content: issueDiv.find('.content').val(),
 			workFlowState: state,
-			assignedTo: issueDiv.find('.assignedTo').text()
+			assignedTo: issueDiv.find('.assignedTo').text(),
+			height: issueDiv.height(),
+			width: issueDiv.width()
 		};
 
 		events.publish("events.issue.update", data);
@@ -110,6 +114,9 @@
 		{
 			issueDiv.find(".assignedTo").text(data.assignedTo);
 		}
+
+		issueDiv.height(event.data.height);
+		issueDiv.width(event.data.width);
 	}
 
 	function issueDeleted(event)
