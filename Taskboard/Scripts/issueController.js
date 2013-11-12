@@ -82,6 +82,14 @@
 		parent.find('.assignedTo').text(taskboard.displayName.match(/([A-Z])/g).join(''));
 		updateIssue.apply(this);
 	}
+	
+	function unopenIssue()
+	{
+		var parent = $(this).parent();
+		parent.removeClass('open');
+		parent.find('.assignedTo').text('');
+		updateIssue.apply(this);
+	}
 
 	function closeIssue()
 	{
@@ -148,6 +156,7 @@
 	_body.on("click", ".issue .deleteIssue", deleteIssue);
 	_body.on("click", ".issue .openIssue", openIssue);
 	_body.on("click", ".issue .closeIssue", closeIssue);
+	_body.on("click", ".issue .unopenIssue", unopenIssue);
 
 	events.subscribe("events.issue.added", issueReceived);
 	events.subscribe("events.issue.updated", issueUpdated);

@@ -257,7 +257,8 @@ body {
     left: 0%; }
   .issue .closeIssue,
   .issue .openIssue,
-  .issue .deleteIssue {
+  .issue .deleteIssue,
+  .issue .unopenIssue {
     display: none;
     position: absolute;
     height: 1.6em;
@@ -268,23 +269,28 @@ body {
     top: .5em; }
     .issue .closeIssue:hover,
     .issue .openIssue:hover,
-    .issue .deleteIssue:hover {
+    .issue .deleteIssue:hover,
+    .issue .unopenIssue:hover {
       background-color: #d6d6d6; }
     .issue .closeIssue:hover:active,
     .issue .openIssue:hover:active,
-    .issue .deleteIssue:hover:active {
+    .issue .deleteIssue:hover:active,
+    .issue .unopenIssue:hover:active {
       background-color: #bdbdbd; }
-  .issue .closeIssue {
-    left: .5em; }
   .issue .openIssue {
+    left: .5em; }
+  .issue .closeIssue {
     left: 4em; }
   .issue .deleteIssue {
     left: 7.5em; }
+  .issue .unopenIssue {
+    left: 11em; }
   .issue:hover {
     background-color: #AFAFAF; }
     .issue:hover .deleteIssue,
     .issue:hover .closeIssue,
-    .issue:hover .openIssue {
+    .issue:hover .openIssue,
+    .issue:hover .unopenIssue {
       display: block; }
 
 .ui-selected {

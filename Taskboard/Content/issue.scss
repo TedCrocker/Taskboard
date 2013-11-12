@@ -47,7 +47,8 @@
 
 	.closeIssue,
 	.openIssue,
-	.deleteIssue
+	.deleteIssue,
+	.unopenIssue
 	{
 		display: none;
 		position: absolute;
@@ -69,17 +70,24 @@
 		}
 	}
 
-	.closeIssue
+	.openIssue
 	{
 		left: .5em;
 	}
-	.openIssue
+
+	.closeIssue
 	{
 		left: 4em;
 	}
+
 	.deleteIssue
 	{
 		left: 7.5em;
+	}
+
+	.unopenIssue
+	{
+		left: 11em;
 	}
 
 	&:hover
@@ -88,7 +96,8 @@
 
 		.deleteIssue,
 		.closeIssue,
-		.openIssue
+		.openIssue,
+		.unopenIssue
 		{
 			display: block;
 		}

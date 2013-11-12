@@ -3,5 +3,6 @@
 	<button class="openIssue">Open</button>
 	<button class="closeIssue">Close</button>
 	<button class="deleteIssue">X</button>
+	<button class="unopenIssue">Clear</button>	
 	<div class="assignedTo">{assignedTo}</div>
 </div>
