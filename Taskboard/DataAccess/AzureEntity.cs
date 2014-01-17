@@ -26,7 +26,7 @@ namespace Taskboard.DataAccess
 				}
 
 				object value = null;
-				if (propertyType.IsEnum)
+				if (propertyType.IsEnum && !string.IsNullOrEmpty(keyValue.Value.Int32Value.ToString()))
 				{
 					value = Enum.Parse(propertyType, keyValue.Value.Int32Value.ToString());
 				}

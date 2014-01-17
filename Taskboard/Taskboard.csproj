@@ -353,7 +353,9 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Templates\story.dust" />
-    <Content Include="Templates\task.dust" />
+    <Content Include="Templates\task.dust">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Templates\issue.dust">
       <SubType>Designer</SubType>
     </Content>

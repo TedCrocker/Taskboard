@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Taskboard.DataAccess
 {
-	public interface IDataRepository<T>
+	public interface IDataRepository<T> : IDisposable
 	{
 		void Add(T entity);
 		void Delete(T entity);

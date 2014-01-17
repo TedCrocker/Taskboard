@@ -53,7 +53,7 @@ namespace Taskboard.Tests
 			var taskItem = new TaskItem() { Id = "1", Content = "Content", Left = 2, Top = 3 };
 			
 			var props = taskItem.WriteEntity(new OperationContext());
-			Assert.That(props.Count(), Is.EqualTo(4));
+			Assert.That(props.Count(), Is.EqualTo(6));
 
 			var newTask = new TaskItem();
 			newTask.ReadEntity(props, new OperationContext());

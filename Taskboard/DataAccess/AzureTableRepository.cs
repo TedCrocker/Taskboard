@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Newtonsoft.Json;
@@ -13,6 +14,9 @@ namespace Taskboard.DataAccess
 	{
 		private readonly CloudTable _table;
 		private static readonly HashSet<T> _entities = new HashSet<T>();
+		private bool _updatePending = false;
+		private Timer _timer;
+		private ISet<T> _entitiesWithPendingUpdates = new HashSet<T>();
 
 		public AzureTableRepository()
 		{
@@ -21,6 +25,8 @@ namespace Taskboard.DataAccess
 			var client = storageAccount.CreateCloudTableClient();
 			_table = client.GetTableReference("Tasks");
 			_table.CreateIfNotExists();
+
+			_timer = new Timer(ExecuteUpdate, null, TimeSpan.Zero, TimeSpan.FromSeconds(60));
 		} 
 
 		public void Add(T entity)
@@ -58,12 +64,29 @@ namespace Taskboard.DataAccess
 			storedEntity.ReadEntity(entity.WriteEntity(new OperationContext()), new OperationContext());
 			try
 			{
-				_table.Execute(TableOperation.Merge(storedEntity));
+				_entitiesWithPendingUpdates.Add(storedEntity);
+				_updatePending = true;
 			}
 			catch
 			{
 				
 			}
+		}
+
+		private void ExecuteUpdate(object obj)
+		{
+			if (_updatePending)
+			{
+				var batchOperation = new TableBatchOperation();
+				foreach (var entity in _entitiesWithPendingUpdates)
+				{
+					batchOperation.Add(TableOperation.Merge(entity));
+				}
+
+				_table.ExecuteBatch(batchOperation);
+				_entitiesWithPendingUpdates.Clear();
+			}
+			_updatePending = false;
 		}
 
 		public IList<T> GetWhere(Func<T, bool> whereCondition)
@@ -93,6 +116,11 @@ namespace Taskboard.DataAccess
 			}
 
 			return queryResults.Where(whereCondition).ToList();
+		}
+
+		public void Dispose()
+		{
+			_timer.Dispose();
 		}
 	}
 }
