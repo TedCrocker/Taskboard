@@ -8,6 +8,9 @@
 
 	function draggableStart(event, ui)
 	{
+		ui.position.top -= $(window).scrollTop();
+		ui.position.left -= $(window).scrollLeft();
+		
 		if ($(this).hasClass('ui-selected'))
 		{
 			selected = $(".ui-selected").each(function ()
@@ -28,11 +31,12 @@
 	{
 		var dt = ui.position.top - _offset.top;
 		var dl = ui.position.left - _offset.left;
-		
+
 		selected.not(this).each(function ()
 		{
 			var element = $(this);
 			var offset = element.data('offset');
+
 			element.css({ top: offset.top + dt, left: offset.left + dl });
 			_dragCallbacks[element.attr('id')].apply(this);
 		});
@@ -70,8 +74,10 @@
 
 		element.draggable({
 			start: draggableStart,
-			drag: function()
+			drag: function(event, ui)
 			{
+				ui.position.top -= $(window).scrollTop();
+				ui.position.left -= $(window).scrollLeft();
 				draggableDrag.apply(this, arguments);
 				if (dragCallback)
 				{
