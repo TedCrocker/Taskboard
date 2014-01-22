@@ -26,7 +26,7 @@ namespace Taskboard.DataAccess
 			_table = client.GetTableReference("Tasks");
 			_table.CreateIfNotExists();
 
-			_timer = new Timer(ExecuteUpdate, null, TimeSpan.Zero, TimeSpan.FromSeconds(60));
+			_timer = new Timer(ExecuteUpdate, null, TimeSpan.Zero, TimeSpan.FromSeconds(7));
 		} 
 
 		public void Add(T entity)
@@ -83,8 +83,15 @@ namespace Taskboard.DataAccess
 					batchOperation.Add(TableOperation.Merge(entity));
 				}
 
-				_table.ExecuteBatch(batchOperation);
-				_entitiesWithPendingUpdates.Clear();
+				try
+				{
+					_table.ExecuteBatch(batchOperation);
+					_entitiesWithPendingUpdates.Clear();
+				}
+				catch (Exception e)
+				{
+					
+				}
 			}
 			_updatePending = false;
 		}
