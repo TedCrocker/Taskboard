@@ -23,7 +23,7 @@ namespace Taskboard.Hubs
 			Clients.Caller.getAll(entities);
 		}
 
-		public void Update(T entity)
+		public virtual void Update(T entity)
 		{
 			_repository.Update(entity);
 			Clients.AllExcept(Context.ConnectionId).update(entity);

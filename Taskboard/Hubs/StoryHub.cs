@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Web.UI.WebControls;
 using Microsoft.AspNet.SignalR;
 using Taskboard.DataAccess;
 using Taskboard.Models;
@@ -7,7 +8,6 @@ namespace Taskboard.Hubs
 {
 	public class StoryHub : BaseHub<Story>
 	{
-
 		public StoryHub(IDataRepository<Story> storyRepo)
 		{
 			_repository = storyRepo;

@@ -148,7 +148,8 @@
 		var parent = $(this).parent();
 		parent.addClass('open');
 		parent.find('.openDate').text(moment().format(_dateDisplayFormat));
-		
+
+		taskboard.logger.add("STORY - OPENED: " + parent.find('.content').val());
 		updateStory.apply(this);
 	}
 	
@@ -159,6 +160,8 @@
 		parent.removeClass('open');
 		
 		parent.find('.closeDate').text(moment().format(_dateDisplayFormat));
+
+		taskboard.logger.add("STORY - CLOSED: " + parent.find('.content').val());
 		updateStory.apply(this);
 	}
 
