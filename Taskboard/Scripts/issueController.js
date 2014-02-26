@@ -80,6 +80,7 @@
 		var parent = $(this).parent();
 		parent.addClass('open');
 		parent.find('.assignedTo').text(taskboard.displayName.match(/([A-Z])/g).join(''));
+		
 		updateIssue.apply(this);
 	}
 	
@@ -96,6 +97,8 @@
 		var parent = $(this).parent();
 		parent.addClass('closed');
 		parent.removeClass('open');
+
+		taskboard.logger.add("ISSUE - CLOSED: " + parent.find('.content').val());
 		updateIssue.apply(this);
 	}
 

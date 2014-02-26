@@ -15,7 +15,8 @@ body
 #addStory,
 #addTask,
 #addRedIssue,
-#addBlueIssue
+#addBlueIssue,
+#showLog
 {
 	position: absolute;
 	left: 0px;
@@ -54,7 +55,14 @@ body
 	left: 3em;
 }
 
+#showLog
+{
+	position: absolute;
+	top: 6em;
+}
+
 @import "consoleWindow";
+@import "logWindow";
 @import "task";
 @import "story";
 @import "issue";

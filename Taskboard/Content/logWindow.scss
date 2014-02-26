@@ -1,0 +1,32 @@
+#logOutput
+{
+	padding: 0.5em;
+	background-color: #AFAFAF;
+	border-radius: 1em;
+	height: 15em;
+	width: 30em;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	overflow-y: scroll;
+
+	.logItem
+	{
+		padding-bottom:6px;
+		margin-bottom:6px;
+		border-bottom: 1px solid lighten(#AFAFAF, 5%);
+
+		.logItemTime
+		{
+			font-size: 70%;
+			float: left;
+			margin-right: 5px;
+		}
+
+		.logItemText
+		{
+			float: left;
+			font-weight: bold;
+		}
+	}
+}

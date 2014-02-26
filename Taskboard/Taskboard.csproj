@@ -228,6 +228,9 @@
     <Content Include="Content\issue.css">
       <DependentUpon>issue.scss</DependentUpon>
     </Content>
+    <Content Include="Content\logWindow.css">
+      <DependentUpon>logWindow.scss</DependentUpon>
+    </Content>
     <Content Include="Content\normalize.css">
       <DependentUpon>normalize.scss</DependentUpon>
     </Content>
@@ -314,12 +317,14 @@
     <Content Include="Scripts\hubs\chatHub.js" />
     <Content Include="Scripts\hubs\Hub.js" />
     <Content Include="Content\issue.scss" />
+    <Content Include="Content\logWindow.scss" />
     <None Include="Properties\PublishProfiles\twtasks - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\twtasks - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\twtasks.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\interfaceController.js" />
     <Content Include="Scripts\issueController.js" />
+    <Content Include="Scripts\logger.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />

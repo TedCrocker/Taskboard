@@ -40,7 +40,8 @@ body {
 #addStory,
 #addTask,
 #addRedIssue,
-#addBlueIssue {
+#addBlueIssue,
+#showLog {
   position: absolute;
   left: 0px;
   height: 3em;
@@ -69,6 +70,10 @@ body {
   top: 3em;
   left: 3em; }
 
+#showLog {
+  position: absolute;
+  top: 6em; }
+
 #consoleOutput {
   padding: 0.5em;
   background-color: #AFAFAF;
@@ -93,6 +98,28 @@ body {
   #consoleOutput #message {
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em; }
+
+#logOutput {
+  padding: 0.5em;
+  background-color: #AFAFAF;
+  border-radius: 1em;
+  height: 15em;
+  width: 30em;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll; }
+  #logOutput .logItem {
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #bcbcbc; }
+    #logOutput .logItem .logItemTime {
+      font-size: 70%;
+      float: left;
+      margin-right: 5px; }
+    #logOutput .logItem .logItemText {
+      float: left;
+      font-weight: bold; }
 
 .task {
   background-color: yellow;

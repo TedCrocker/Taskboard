@@ -17,7 +17,7 @@ namespace Taskboard.Hubs
 			Clients.All.remove(entity);
 		}
 
-		public void GetAll()
+		public virtual void GetAll()
 		{
 			var entities = _repository.GetWhere(t => true).ToArray();
 			Clients.Caller.getAll(entities);
