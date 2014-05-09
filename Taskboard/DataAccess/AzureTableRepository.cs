@@ -45,13 +45,15 @@ namespace Taskboard.DataAccess
 		public T Get(string id)
 		{
 			var type = typeof (T);
-			var result = _table.Execute(TableOperation.Retrieve<T>(type.Name, id));
+			T returnValue =  _entitiesWithPendingUpdates.FirstOrDefault(e => e.RowKey == id && e.PartitionKey == type.Name);
 
-			T returnValue = default(T);
-
-			if (result.HttpStatusCode == 200)
+			if (returnValue == null)
 			{
-				returnValue = (T)Convert.ChangeType(result.Result, type);
+				var result = _table.Execute(TableOperation.Retrieve<T>(type.Name, id));
+				if (result.HttpStatusCode == 200)
+				{
+					returnValue = (T)Convert.ChangeType(result.Result, type);
+				}
 			}
 
 			return returnValue;
