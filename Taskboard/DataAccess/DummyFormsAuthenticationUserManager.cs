@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Web;
+﻿using System.Web;
 using System.Web.Security;
 
 namespace Taskboard.DataAccess
@@ -23,7 +21,9 @@ namespace Taskboard.DataAccess
 
 		public bool Authenticate(string userName, string password)
 		{
-			if (password != "Password123TrapWire")
+			var passwordToTestAgainst = ConfigurationSettings.PasswordToTestAgainst;
+
+			if (password != passwordToTestAgainst)
 			{
 				if (HttpContext.Current.Request.Cookies["UserName"] != null)
 				{

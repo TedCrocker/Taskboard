@@ -73,6 +73,7 @@
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WindowsAzure.Storage.2.1.0.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
@@ -196,6 +197,7 @@
     <Compile Include="CustomAuthFilter.cs" />
     <Compile Include="DataAccess\AzureEntity.cs" />
     <Compile Include="DataAccess\AzureTableRepository.cs" />
+    <Compile Include="DataAccess\ConfigurationSettings.cs" />
     <Compile Include="DataAccess\ElasticTableItem.cs" />
     <Compile Include="DataAccess\DummyFormsAuthenticationUserManager.cs" />
     <Compile Include="DataAccess\IDataRepository.cs" />
@@ -318,6 +320,7 @@
     <Content Include="Scripts\hubs\Hub.js" />
     <Content Include="Content\issue.scss" />
     <Content Include="Content\logWindow.scss" />
+    <None Include="Properties\PublishProfiles\knoxtasks.pubxml" />
     <None Include="Properties\PublishProfiles\twtasks - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\twtasks - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\twtasks.pubxml" />

@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
+using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Newtonsoft.Json;
@@ -20,8 +21,7 @@ namespace Taskboard.DataAccess
 
 		public AzureTableRepository()
 		{
-			var connectionString = ConfigurationManager.ConnectionStrings["AzureStorage"].ConnectionString;
-			var storageAccount = CloudStorageAccount.Parse(connectionString);
+			var storageAccount = CloudStorageAccount.Parse(ConfigurationSettings.ConnectionString);
 			var client = storageAccount.CreateCloudTableClient();
 			_table = client.GetTableReference("Tasks");
 			_table.CreateIfNotExists();
