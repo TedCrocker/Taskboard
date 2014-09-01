@@ -7,7 +7,8 @@
 		var _hub = $.connection[_hubName + "Hub"];
 		var _client = _hub.client;
 		var _server = _hub.server;
-		
+		_self.client = _client;
+		_self.server = _server;
 		_client.update = function (model)
 		{
 			events.publish("events." + _hubName + ".updated", model);
@@ -51,6 +52,8 @@
 		{
 			_server.getAll();
 		});
+
+		return _self;
 	};
 })( window.taskboard = window.taskboard || {},
 	window.events = window.events || {},

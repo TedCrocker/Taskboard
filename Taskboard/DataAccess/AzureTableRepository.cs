@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
+using System.Web.UI.WebControls;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -40,6 +41,17 @@ namespace Taskboard.DataAccess
 			var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
 			_table.Execute(TableOperation.Delete(storedEntity));
 			_entities.RemoveWhere(e => e.RowKey == entity.RowKey);
+		}
+
+		public void Clear()
+		{
+			var batch = new TableBatchOperation();
+			foreach (var entity in _entities)
+			{
+				batch.Add(TableOperation.Delete(entity));
+			}
+			_table.ExecuteBatch(batch);
+			_entities.Clear();
 		}
 
 		public T Get(string id)

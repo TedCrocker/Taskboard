@@ -14,7 +14,7 @@
 	{
 		var time = moment(item.TimeStamp).format("DD/MM/YY A");
 		var div = $('<div/>').addClass('logItem').addClass('ui-helper-clearfix');
-		var time = $('<div/>').addClass('logItemTime').text(time).appendTo(div);
+		var timeDiv = $('<div/>').addClass('logItemTime').text(time).appendTo(div);
 		var text = $('<div/>').addClass('logItemText').text(item.Text).appendTo(div);
 		logWindow.prepend(div);
 	}
@@ -32,17 +32,28 @@
 		}
 	}
 
+	function logCleared()
+	{
+		logWindow.find('.logItem').remove();
+	}
+
 	function toggle()
 	{
 		logWindow.toggle();
 	}
 
+	function clearLog()
+	{
+		events.publish("events.log.clear");
+	}
+
 	events.subscribe("events.log.added",   logReceived);
 	//events.subscribe("events.log.updated", logUpdated);
-	//events.subscribe("events.log.removed", logDeleted);
+	events.subscribe("events.log.cleared", logCleared);
 	events.subscribe("events.log.fetched", logFetched);
 
 	$('body').on('click', '#showLog', toggle);
+	$('body').on('click', '.clearLog', clearLog);
 })(window.taskboard = window.taskboard || {},
 	window.events = window.events || {},
 	jQuery);

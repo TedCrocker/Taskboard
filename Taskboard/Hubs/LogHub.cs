@@ -35,5 +35,11 @@ namespace Taskboard.Hubs
 			_repository.Add(logItem);
 			Clients.All.add(logItem);
 		}
+
+		public void ClearAll()
+		{
+			_repository.Clear();
+			Clients.All.clearAll();
+		}
 	}
 }

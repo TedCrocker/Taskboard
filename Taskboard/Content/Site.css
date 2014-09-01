@@ -109,6 +109,15 @@ body {
   right: 0px;
   bottom: 0px;
   overflow-y: scroll; }
+  #logOutput .clearLog {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    line-height: 10px;
+    text-align: center; }
   #logOutput .logItem {
     padding-bottom: 6px;
     margin-bottom: 6px;

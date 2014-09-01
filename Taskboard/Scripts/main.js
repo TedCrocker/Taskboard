@@ -11,7 +11,7 @@
 		var taskHub = new taskboard.Hub("task");
 		var storyHub = new taskboard.Hub("story");
 		var issueHub = new taskboard.Hub("issue");
-		var logItemHub = new taskboard.Hub("log");
+		var logItemHub = new taskboard.LogHub("log");
 	});
 	
 })(	window.taskboard = window.taskboard || {},
