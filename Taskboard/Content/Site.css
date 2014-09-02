@@ -269,7 +269,8 @@ body {
   position: absolute;
   padding: 0.5em;
   font-family: arial;
-  font-weight: bold; }
+  font-weight: bold;
+  box-sizing: border-box; }
   .issue.blue {
     color: blue; }
   .issue.red {
@@ -278,15 +279,13 @@ body {
     text-decoration: line-through; }
   .issue .content {
     background: transparent;
-    position: absolute;
-    top: 1em;
-    left: 2em;
-    width: 85%;
-    height: 85%;
+    width: 100%;
+    height: 100%;
     text-align: left;
     border: 0;
     resize: none;
-    color: inherit; }
+    color: inherit;
+    box-sizing: border-box; }
   .issue .assignedTo {
     position: absolute;
     top: 1.1em;
@@ -302,7 +301,7 @@ body {
     font-size: 0.5em;
     padding: 0;
     border: 0;
-    top: .5em; }
+    bottom: 0em; }
     .issue .closeIssue:hover,
     .issue .openIssue:hover,
     .issue .deleteIssue:hover,
