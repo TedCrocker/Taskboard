@@ -5,7 +5,6 @@
 	var _offset = { top: 0, left: 0 };
 	var _dragCallbacks = {};
 
-
 	function draggableStart(event, ui)
 	{
 		ui.position.top -= $(window).scrollTop();
@@ -76,8 +75,6 @@
 			start: draggableStart,
 			drag: function(event, ui)
 			{
-				ui.position.top -= $(window).scrollTop();
-				ui.position.left -= $(window).scrollLeft();
 				draggableDrag.apply(this, arguments);
 				if (dragCallback)
 				{
