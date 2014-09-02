@@ -323,7 +323,6 @@
     <None Include="Properties\PublishProfiles\knoxtasks.pubxml" />
     <None Include="Properties\PublishProfiles\twtasks - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\twtasks - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\twtasks.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\hubs\LogHub.js" />
     <Content Include="Scripts\interfaceController.js" />

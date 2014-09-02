@@ -288,8 +288,8 @@ body {
     box-sizing: border-box; }
   .issue .assignedTo {
     position: absolute;
-    top: 1.1em;
-    left: 0%; }
+    top: .8em;
+    left: -1em; }
   .issue .closeIssue,
   .issue .openIssue,
   .issue .deleteIssue,
