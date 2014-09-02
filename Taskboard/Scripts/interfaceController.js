@@ -60,9 +60,23 @@
 				$this.addClass('ui-selected');
 			}
 		}
-
 	});
 
+	taskboard.fadeBorder = function(element)
+	{
+		element.css('border-width', 3);
+		element.css('border-style', 'solid');
+		element.css('border-color', 'rgba(255,153,0,100)');
+		setTimeout(function()
+		{
+			$({ alpha: 1 }).animate({ alpha: 0 }, {
+				duration: 1000,
+				step: function () {
+					element.css('border-color', 'rgba(255,153,0,' + this.alpha + ')');
+				}
+			});
+		}, 5000);
+	};
 
 	taskboard.makeDraggable = function(element, dragCallback)
 	{

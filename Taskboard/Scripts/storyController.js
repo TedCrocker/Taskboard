@@ -5,7 +5,7 @@
 	var _dateDisplayFormat = "DD/MM/YY A";
 	var _timeStamps = {};
 
-	function storyReceived(event)
+	function storyReceived(event, isNotNew)
 	{
 		if (event.data.opened != null)
 		{
@@ -43,6 +43,10 @@
 			$output.find('.size').val(event.data.size);
 			taskboard.makeDraggable($output, dragUpdateStory);
 			_timeStamps[$output.attr('id')] = new Date();
+
+			if (isNotNew !== true) {
+				taskboard.fadeBorder($output);
+			}
 		});
 	}
 
@@ -84,7 +88,7 @@
 	{
 		for (var i = 0; i < event.data.length; i++)
 		{
-			storyReceived({ data: event.data[i] });
+			storyReceived({ data: event.data[i] }, true);
 		}
 	}
 	

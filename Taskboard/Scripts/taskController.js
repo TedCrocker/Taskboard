@@ -4,7 +4,7 @@
 	var _body = $('body');
 	var _timeStamps = {};
 
-	function taskReceived(event)
+	function taskReceived(event, isNotNew)
 	{
 		var data = event.data;
 	
@@ -25,6 +25,10 @@
 			$output.css('top', event.data.top);
 			taskboard.makeDraggable($output, dragUpdateTask);
 			_timeStamps[$output.attr('id')] = new Date();
+			if (isNotNew !== true)
+			{
+				taskboard.fadeBorder($output);
+			}
 		});
 	}
 
@@ -121,7 +125,7 @@
 	{
 		for (var i = 0; i < event.data.length; i++)
 		{
-			taskReceived({ data: event.data[i] });
+			taskReceived({ data: event.data[i] }, true);
 		}
 	}
 

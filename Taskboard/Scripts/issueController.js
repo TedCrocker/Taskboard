@@ -5,7 +5,7 @@
 	var _body = $('body');
 	var _timeStamps = {};
 
-	function issueReceived(event)
+	function issueReceived(event, isNotNew)
 	{
 		var data = event.data;
 
@@ -29,6 +29,10 @@
 			$output.resizable({ resize: dragUpdateIssue });
 			$output.height(event.data.height);
 			$output.width(event.data.width);
+
+			if (isNotNew !== true) {
+				taskboard.fadeBorder($output);
+			}
 		});
 	}
 
@@ -141,7 +145,7 @@
 	{
 		for (var i = 0; i < event.data.length; i++)
 		{
-			issueReceived({ data: event.data[i] });
+			issueReceived({ data: event.data[i] }, true);
 		}
 	}
 
