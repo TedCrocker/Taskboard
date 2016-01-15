@@ -7,3 +7,4 @@
 /Taskboard.Tests/obj/*
 /_ReSharper.TaskBoard/
 *.scssc
+.vs/**
