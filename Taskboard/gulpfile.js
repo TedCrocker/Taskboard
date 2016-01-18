@@ -5,6 +5,12 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 
 var gulp = require('gulp');
 var rename = require('gulp-rename');
+var modernizr = require('gulp-modernizr');
+
+var BASE_DIR = "./wwwroot/lib/";
+var JS_DEST = "./Scripts/thirdparty/";
+var CSS_DEST = "./Content/thirdparty/";
+
 
 var mappings = [
 	{ "src": "jquery/dist/jquery.js", "destName": "jquery.js" },
@@ -19,11 +25,15 @@ var mappings = [
 	}
 ];
 
-gulp.task('default', function () {
-	var BASE_DIR = "./wwwroot/lib/";
-	var JS_DEST = "./Scripts/thirdparty/";
-	var CSS_DEST = "./Content/thirdparty/";
+gulp.task('modernizr', function ()
+{
+	gulp.src('./Scripts/**.js')
+		.pipe(modernizr())
+		.pipe(gulp.dest(JS_DEST));
+});
 
+gulp.task('default', function () {
+	
 	function copyFile(mapping, destination) {
 		var g = gulp.src(BASE_DIR + mapping.src);
 		if (mapping.destName) {

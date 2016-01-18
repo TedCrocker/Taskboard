@@ -5,6 +5,8 @@
 	"devDependencies": {
 		"gulp": "3.9.0",
 		"gulp-rename": "1.2.2",
+		"gulp-modernizr": "1.0.0-alpha",
+		"modernizr": "3.3.1",
 		"bower": "1.7.2"
 	}
 }

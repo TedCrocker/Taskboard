@@ -353,12 +353,12 @@
     <Content Include="Scripts\issueController.js" />
     <Content Include="Scripts\logger.js" />
     <Content Include="Scripts\main.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\storyController.js" />
     <Content Include="Scripts\taskController.js" />
     <Content Include="Scripts\thirdparty\jquery-ui.js" />
     <Content Include="Scripts\thirdparty\jquery.js" />
     <Content Include="Scripts\thirdparty\jquery.signalR.js" />
+    <Content Include="Scripts\thirdparty\modernizr.js" />
     <Content Include="Scripts\thirdparty\moment.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
