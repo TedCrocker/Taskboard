@@ -1,28 +1,42 @@
-﻿using System.Web.Routing;
+﻿using System.Reflection;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
-using Ninject;
+using Microsoft.AspNet.SignalR.Hubs;
+using SimpleInjector;
+using SimpleInjector.Integration.Web.Mvc;
+using SimpleInjector.Integration.WebApi;
 using Taskboard.DataAccess;
 
 namespace Taskboard
 {
 	public static class DependencyConfig
 	{
-		public static void RegisterServices(IKernel kernel)
+		public static Container Initialize()
 		{
-			kernel.Bind(typeof(IDataRepository<>)).To(typeof(AzureTableRepository<>));
-			kernel.Bind(typeof(IUserManager)).To(typeof(DummyFormsAuthenticationUserManager));
+			var container = new Container();
+
+			InitializeContainer(container);
+
+			var activator = new SimpleInjectorHubActivator(container);
+			GlobalHost.DependencyResolver.Register(typeof(IHubActivator), () => activator);
+			RouteTable.Routes.MapHubs();
+			container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+			container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+
+			container.Verify();
+
+			GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
+			DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+
+			return container;
 		}
 
-		public static void SetupDependencies()
+		private static void InitializeContainer(Container container)
 		{
-			var kernel = new StandardKernel();
-			RegisterServices(kernel);
-			var resolver = new NinjectSignalRDependencyResolver(kernel);
-
-			RouteTable.Routes.MapHubs(new HubConfiguration()
-				{
-					Resolver = resolver
-				});
+			container.Register(typeof(IDataRepository<>), typeof(AzureTableRepository<>));
+			container.Register<IUserManager, DummyFormsAuthenticationUserManager>();
 		}
 	}
 }

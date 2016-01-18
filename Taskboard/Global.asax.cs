@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
-using Ninject;
 using Taskboard.DataAccess;
 
 namespace Taskboard
@@ -17,7 +16,6 @@ namespace Taskboard
 
 	public class MvcApplication : System.Web.HttpApplication
 	{
-		[Inject]
 		public IUserManager UserManager { get; set; }
 
 		protected void Application_Start()
@@ -27,9 +25,12 @@ namespace Taskboard
 			GlobalHost.HubPipeline.RequireAuthentication();
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-			DependencyConfig.SetupDependencies();
+			var container = DependencyConfig.Initialize();
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+			UserManager = container.GetInstance<IUserManager>();
 		}
 
 		protected void Application_BeginRequest(object sender, EventArgs e)
