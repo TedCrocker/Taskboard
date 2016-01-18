@@ -10,7 +10,8 @@ var mappings = [
 	{ "src": "jquery/dist/jquery.js", "destName": "jquery.js" },
 	{
 		"js": [{ "src": "jquery-ui/jquery-ui.js" }],
-		"js": [{ "src": "signalr/jquery.signalR.js"}],
+		"js": [{ "src": "signalr/jquery.signalR.js" }],
+		"js": [{ "src": "moment/moment.js" }],
 		"css": [
 			{ "src": "jquery-ui/themes/base/*", destFolder: "jquery-ui" },
 			{ "src": "jquery-ui/themes/base/images/*", destFolder: "jquery-ui/images" }

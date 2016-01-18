@@ -332,6 +332,7 @@
     <Content Include="Scripts\thirdparty\jquery-ui.js" />
     <Content Include="Scripts\thirdparty\jquery.js" />
     <Content Include="Scripts\thirdparty\jquery.signalR.js" />
+    <Content Include="Scripts\thirdparty\moment.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
