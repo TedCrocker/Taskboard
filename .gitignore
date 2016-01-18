@@ -3,6 +3,8 @@
 /Taskboard/*.user
 /Taskboard/bin/*
 /Taskboard/obj/*
+/Taskboard/node_modules/**
+/Taskboard/wwwroot/**
 /Taskboard.Tests/bin/*
 /Taskboard.Tests/obj/*
 /_ReSharper.TaskBoard/
