@@ -21,7 +21,6 @@ namespace Taskboard
 
 			var activator = new SimpleInjectorHubActivator(container);
 			GlobalHost.DependencyResolver.Register(typeof(IHubActivator), () => activator);
-			RouteTable.Routes.MapHubs();
 			container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 			container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
 
