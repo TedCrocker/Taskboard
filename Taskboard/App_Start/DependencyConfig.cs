@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
+using Microsoft.WindowsAzure.Storage;
+using Serilog;
 using SimpleInjector;
 using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Integration.WebApi;
@@ -36,6 +37,13 @@ namespace Taskboard
 		{
 			container.Register(typeof(IDataRepository<>), typeof(AzureTableRepository<>));
 			container.Register<IUserManager, DummyFormsAuthenticationUserManager>();
+			
+			var logger = new LoggerConfiguration()
+				.WriteTo
+				.AzureTableStorage(CloudStorageAccount.Parse(ConfigurationSettings.ConnectionString))
+				.CreateLogger();
+
+			container.RegisterSingleton<ILogger>(logger);
 		}
 	}
 }

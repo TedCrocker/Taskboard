@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using Serilog;
 
 namespace Taskboard.DataAccess
 {
@@ -14,9 +15,11 @@ namespace Taskboard.DataAccess
 		private bool _updatePending = false;
 		private Timer _timer;
 		private ISet<T> _entitiesWithPendingUpdates = new HashSet<T>();
+		private ILogger _log;
 
-		public AzureTableRepository()
+		public AzureTableRepository(ILogger log)
 		{
+			_log = log;
 			var storageAccount = CloudStorageAccount.Parse(ConfigurationSettings.ConnectionString);
 			var client = storageAccount.CreateCloudTableClient();
 			_table = client.GetTableReference("Tasks");
@@ -76,9 +79,9 @@ namespace Taskboard.DataAccess
 				_entitiesWithPendingUpdates.Add(storedEntity);
 				_updatePending = true;
 			}
-			catch
+			catch(Exception e)
 			{
-				
+				_log.Error(e, "AzureTableRepository.Update");
 			}
 		}
 
@@ -99,7 +102,7 @@ namespace Taskboard.DataAccess
 				}
 				catch (Exception e)
 				{
-					
+					_log.Error(e, "AzureTableRepository.ExecuteUpdate");
 				}
 			}
 			_updatePending = false;

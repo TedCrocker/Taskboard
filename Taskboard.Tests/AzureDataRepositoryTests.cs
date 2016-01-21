@@ -2,6 +2,7 @@
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.StorageClient;
 using NUnit.Framework;
+using Serilog;
 using Taskboard.DataAccess;
 using Taskboard.Models;
 using CloudStorageAccount = Microsoft.WindowsAzure.CloudStorageAccount;
@@ -10,25 +11,28 @@ namespace Taskboard.Tests
 {
 	public class AzureDataRepositoryTests
 	{
+		private ILogger _logger;
+
 		[SetUp]
 		public void Setup()
 		{
 			var storageAccount = CloudStorageAccount.Parse("UseDevelopmentStorage=true");
 			var client = storageAccount.CreateCloudTableClient();
 			client.DeleteTableIfExist("Tasks");
+			_logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 		}
 
 		[Test]
 		public void CanBuildRepository()
 		{
-			var repo = new AzureTableRepository<TaskItem>();
+			var repo = new AzureTableRepository<TaskItem>(_logger);
 		}
 
 		[Test]
 		public void CanAddEntity()
 		{
 			var task = new TaskItem() { Id = "1" };
-			var repo = new AzureTableRepository<TaskItem>();
+			var repo = new AzureTableRepository<TaskItem>(_logger);
 			repo.Add(task);
 		}
 
@@ -36,7 +40,7 @@ namespace Taskboard.Tests
 		public void CanGetEntity()
 		{
 			var task = new TaskItem() { Id = "1", Left = 2, Top = 3, Content = "Yar"};
-			var repo = new AzureTableRepository<TaskItem>();
+			var repo = new AzureTableRepository<TaskItem>(_logger);
 			repo.Add(task);
 
 			var fetchedTask = repo.Get(task.Id);
@@ -68,7 +72,7 @@ namespace Taskboard.Tests
 		public void CanUpdateAzureEntityItem()
 		{
 			var taskItem = new TaskItem() {Id = "1", Left = 23};
-			var repo = new AzureTableRepository<TaskItem>();
+			var repo = new AzureTableRepository<TaskItem>(_logger);
 			repo.Add(taskItem);
 			taskItem.Left = 46;
 			repo.Update(taskItem);
@@ -80,7 +84,7 @@ namespace Taskboard.Tests
 		[Test]
 		public void CanGetMultipleValuesOfTheSameType()
 		{
-			var repo = new AzureTableRepository<TaskItem>();
+			var repo = new AzureTableRepository<TaskItem>(_logger);
 			repo.Add(new TaskItem(){ Id = "1"});
 			repo.Add(new TaskItem(){Id = "2", Left = 4});
 			repo.Add(new TaskItem(){Id = "3"});
