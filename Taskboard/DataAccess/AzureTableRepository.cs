@@ -13,9 +13,9 @@ namespace Taskboard.DataAccess
 		private readonly CloudTable _table;
 		private static readonly HashSet<T> _entities = new HashSet<T>();
 		private bool _updatePending = false;
-		private Timer _timer;
-		private ISet<T> _entitiesWithPendingUpdates = new HashSet<T>();
-		private ILogger _log;
+		private readonly Timer _timer;
+		private readonly ISet<T> _entitiesWithPendingUpdates = new HashSet<T>();
+		private readonly ILogger _log;
 
 		public AzureTableRepository(ILogger log)
 		{

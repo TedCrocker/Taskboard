@@ -131,6 +131,10 @@
       <HintPath>..\packages\Serilog.Sinks.AzureTableStorage.1.5.11\lib\net45\Serilog.Sinks.AzureTableStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SerilogWeb.Classic, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9462ddd55fbc0e7f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SerilogWeb.Classic.2.0.6\lib\net45\SerilogWeb.Classic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SimpleInjector, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.3.1.2\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>

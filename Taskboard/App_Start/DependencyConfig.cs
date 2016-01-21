@@ -5,6 +5,7 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.WindowsAzure.Storage;
 using Serilog;
+using SerilogWeb.Classic.Enrichers;
 using SimpleInjector;
 using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Integration.WebApi;
@@ -39,6 +40,8 @@ namespace Taskboard
 			container.Register<IUserManager, DummyFormsAuthenticationUserManager>();
 			
 			var logger = new LoggerConfiguration()
+				.Enrich.With<HttpRequestIdEnricher>()
+				.Enrich.With<UserNameEnricher>()
 				.WriteTo
 				.AzureTableStorage(CloudStorageAccount.Parse(ConfigurationSettings.ConnectionString))
 				.CreateLogger();
