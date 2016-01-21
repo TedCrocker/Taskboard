@@ -30,15 +30,21 @@ namespace Taskboard.DataAccess
 
 		public void Add(T entity)
 		{
-			_table.Execute(TableOperation.Insert(entity));
-			_entities.Add(entity);
+			lock (_lock)
+			{
+				_table.Execute(TableOperation.Insert(entity));
+				_entities.Add(entity);
+			}
 		}
 
 		public void Delete(T entity)
 		{
-			var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
-			_table.Execute(TableOperation.Delete(storedEntity));
-			_entities.RemoveWhere(e => e.RowKey == entity.RowKey);
+			lock (_lock)
+			{
+				var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
+				_table.Execute(TableOperation.Delete(storedEntity));
+				_entities.RemoveWhere(e => e.RowKey == entity.RowKey);
+			}
 		}
 
 		public void Clear()
@@ -71,38 +77,45 @@ namespace Taskboard.DataAccess
 
 		public void Update(T entity)
 		{
-			var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
+			lock (_lock)
+			{
+				var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
 
-			storedEntity.ReadEntity(entity.WriteEntity(new OperationContext()), new OperationContext());
-			try
-			{
-				_entitiesWithPendingUpdates.Add(storedEntity);
-				_updatePending = true;
-			}
-			catch(Exception e)
-			{
-				_log.Error(e, "AzureTableRepository.Update");
+				storedEntity.ReadEntity(entity.WriteEntity(new OperationContext()), new OperationContext());
+				try
+				{
+					_entitiesWithPendingUpdates.Add(storedEntity);
+					_updatePending = true;
+				}
+				catch (Exception e)
+				{
+					_log.Error(e, "AzureTableRepository.Update");
+				}
 			}
 		}
 
+		private static object _lock = new object();
 		private void ExecuteUpdate(object obj)
 		{
 			if (_updatePending)
 			{
-				var batchOperation = new TableBatchOperation();
-				foreach (var entity in _entitiesWithPendingUpdates)
+				lock (_lock)
 				{
-					batchOperation.Add(TableOperation.Merge(entity));
-				}
+					var batchOperation = new TableBatchOperation();
+					foreach (var entity in _entitiesWithPendingUpdates)
+					{
+						batchOperation.Add(TableOperation.Merge(entity));
+					}
 
-				try
-				{
-					_table.ExecuteBatch(batchOperation);
-					_entitiesWithPendingUpdates.Clear();
-				}
-				catch (Exception e)
-				{
-					_log.Error(e, "AzureTableRepository.ExecuteUpdate");
+					try
+					{
+						_table.ExecuteBatch(batchOperation);
+						_entitiesWithPendingUpdates.Clear();
+					}
+					catch (Exception e)
+					{
+						_log.Error(e, "AzureTableRepository.ExecuteUpdate");
+					}
 				}
 			}
 			_updatePending = false;
