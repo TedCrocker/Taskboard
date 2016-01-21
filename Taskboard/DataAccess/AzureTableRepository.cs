@@ -49,13 +49,20 @@ namespace Taskboard.DataAccess
 
 		public void Clear()
 		{
-			var batch = new TableBatchOperation();
-			foreach (var entity in _entities)
+			try
 			{
-				batch.Add(TableOperation.Delete(entity));
+				var batch = new TableBatchOperation();
+				foreach (var entity in _entities)
+				{
+					batch.Add(TableOperation.Delete(entity));
+				}
+				_table.ExecuteBatch(batch);
+				_entities.Clear();
 			}
-			_table.ExecuteBatch(batch);
-			_entities.Clear();
+			catch (Exception e)
+			{
+				_log.Error(e, "AzureTableRepository.Clear");
+			}
 		}
 
 		public T Get(string id)
@@ -94,7 +101,7 @@ namespace Taskboard.DataAccess
 			}
 		}
 
-		private static object _lock = new object();
+		private static readonly object _lock = new object();
 		private void ExecuteUpdate(object obj)
 		{
 			if (_updatePending)

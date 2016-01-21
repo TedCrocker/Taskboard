@@ -34,6 +34,10 @@ body {
   height: 100%;
   background-color: #EFEFEF;
   font-family: 'Titillium Web', sans-serif !important; }
+  html.withGrid,
+  body.withGrid {
+    background-size: 3em 3em;
+    background-image: linear-gradient(to right, #BFBFBF 1px, transparent 1px), linear-gradient(to bottom, #BFBFBF 1px, transparent 1px); }
 
 * {
   box-sizing: border-box; }
@@ -42,7 +46,8 @@ body {
 #addTask,
 #addRedIssue,
 #addBlueIssue,
-#showLog {
+#showLog,
+#showGrid {
   position: absolute;
   left: 0px;
   height: 2em;
@@ -79,6 +84,10 @@ body {
 #showLog {
   position: absolute;
   top: 4em; }
+
+#showGrid {
+  position: absolute;
+  top: 6em; }
 
 .commonStyles {
   cursor: pointer; }

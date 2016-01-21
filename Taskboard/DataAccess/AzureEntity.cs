@@ -17,11 +17,9 @@ namespace Taskboard.DataAccess
 			{
 				var propInfo = type.GetProperty(keyValue.Key);
 				var propertyType = propInfo.PropertyType;
-				var nullable = false;
 
 				if (Nullable.GetUnderlyingType(propertyType) != null)
 				{
-					nullable = true;
 					propertyType = Nullable.GetUnderlyingType(propertyType);
 				}
 

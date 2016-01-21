@@ -12,6 +12,18 @@
 		var storyHub = new taskboard.Hub("story");
 		var issueHub = new taskboard.Hub("issue");
 		var logItemHub = new taskboard.LogHub("log");
+
+		$('#showGrid').on('click', function()
+		{
+			if ($('body').hasClass('withGrid'))
+			{
+				$('body').removeClass('withGrid');
+			}
+			else
+			{
+				$('body').addClass('withGrid');
+			}
+		});
 	});
 	
 })(	window.taskboard = window.taskboard || {},
