@@ -105,7 +105,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=6.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -251,14 +251,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="CustomAuthFilter.cs" />
-    <Compile Include="DataAccess\AzureEntity.cs" />
-    <Compile Include="DataAccess\AzureTableRepository.cs" />
-    <Compile Include="DataAccess\ConfigurationSettings.cs" />
-    <Compile Include="DataAccess\ElasticTableItem.cs" />
     <Compile Include="DataAccess\DummyFormsAuthenticationUserManager.cs" />
-    <Compile Include="DataAccess\IDataRepository.cs" />
-    <Compile Include="DataAccess\IUserManager.cs" />
-    <Compile Include="DataAccess\ShortGuid.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -408,6 +401,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Taskboard.Data\Taskboard.Data.csproj">
+      <Project>{451669A9-FA8A-4AE4-BB5E-12A0A76D91CF}</Project>
+      <Name>Taskboard.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

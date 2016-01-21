@@ -9,7 +9,7 @@ using SerilogWeb.Classic.Enrichers;
 using SimpleInjector;
 using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Integration.WebApi;
-using Taskboard.DataAccess;
+using Taskboard.Data;
 
 namespace Taskboard
 {

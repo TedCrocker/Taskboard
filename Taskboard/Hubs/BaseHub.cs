@@ -1,6 +1,6 @@
 using System.Linq;
 using Microsoft.AspNet.SignalR;
-using Taskboard.DataAccess;
+using Taskboard.Data;
 
 namespace Taskboard.Hubs
 {

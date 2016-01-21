@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.SignalR;
-using Taskboard.DataAccess;
+﻿using Taskboard.Data;
 using Taskboard.Models;
 
 namespace Taskboard.Hubs

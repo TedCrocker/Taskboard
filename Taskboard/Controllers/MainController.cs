@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Taskboard.DataAccess;
+using Taskboard.Data;
 
 namespace Taskboard.Controllers
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Taskboard.DataAccess;
+using Taskboard.Data;
 using Taskboard.Models;
 
 namespace Taskboard.Hubs

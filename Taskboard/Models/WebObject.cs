@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Taskboard.DataAccess;
+using Taskboard.Data;
 
 namespace Taskboard.Models
 {

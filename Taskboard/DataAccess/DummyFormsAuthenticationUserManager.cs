@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Security;
 
-namespace Taskboard.DataAccess
+namespace Taskboard.Data
 {
 	public class DummyFormsAuthenticationUserManager : IUserManager
 	{
