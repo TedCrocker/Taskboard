@@ -14,18 +14,12 @@
 	}
 
 	.content
-	{
-		background-color: transparent;
-		position: absolute;
+	{		
 		top: 15%;
 		left: 5%;
 
 		width: 90%;
 		height: 70%;
-
-		text-align: center;
-		border: 0;
-		resize: none;
 	}
 
 	.size
@@ -71,7 +65,10 @@
 		height: 10%;
 		width: 12%;
 		top: 2.5%;
-		font-size: 0.5em;
+
+		font-size: 0.55em;
+		font-family: 'Open Sans', sans-serif;
+
 		padding: 0;
 		border: 0;
 

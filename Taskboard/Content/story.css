@@ -9,15 +9,10 @@
     background-repeat: no-repeat;
     background-size: cover; }
   .story .content {
-    background-color: transparent;
-    position: absolute;
     top: 15%;
     left: 5%;
     width: 90%;
-    height: 70%;
-    text-align: center;
-    border: 0;
-    resize: none; }
+    height: 70%; }
   .story .size {
     background-color: transparent;
     position: absolute;
@@ -47,7 +42,8 @@
     height: 10%;
     width: 12%;
     top: 2.5%;
-    font-size: 0.5em;
+    font-size: 0.55em;
+    font-family: 'Open Sans', sans-serif;
     padding: 0;
     border: 0; }
     .story .closeStory:hover,
@@ -71,3 +67,4 @@
   .story:hover .size {
     background-color: #F0F0F0; }
 
+/*# sourceMappingURL=story.css.map */

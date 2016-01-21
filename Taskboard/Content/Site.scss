@@ -21,11 +21,14 @@ body
 {
 	position: absolute;
 	left: 0px;
-	height: 3em;
+	height: 2em;
 	width: 3em;
-	font-size: 1.5em;
+	font-size: 1em;
 	background-color: #4F4F4F;
-	color: white
+	color: white;
+	padding:0;
+	text-align:center;
+	font-family: 'Open Sans', sans-serif;
 }
 
 #addStory
@@ -37,7 +40,7 @@ body
 #addTask
 {
 	position: absolute;
-	top: 3em;
+	top: 2em;
 }
 
 #addRedIssue
@@ -46,20 +49,43 @@ body
 	position: absolute;
 	top: 0em;
 	left: 3em;
+	width: 2em;
 }
 
 #addBlueIssue
 {
 	background-color: blue;
 	position: absolute;
-	top: 3em;
+	top: 2em;
 	left: 3em;
+	width: 2em;
 }
 
 #showLog
 {
 	position: absolute;
-	top: 6em;
+	top: 4em;
+}
+
+.commonStyles
+{
+	cursor: pointer;
+
+	.content
+	{
+		font-family: 'Open Sans', sans-serif;
+		position: absolute;
+
+		text-align: center;
+		border: 0;
+		resize: none;
+		background-color: transparent;
+
+		&:hover
+		{
+			outline: -webkit-focus-ring-color auto 5px;
+		}
+	}
 }
 
 @import "consoleWindow";

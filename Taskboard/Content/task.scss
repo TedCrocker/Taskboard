@@ -19,9 +19,6 @@
 		height: 70%;
 
 		text-align: center;
-		border: 0;
-		resize: none;
-		background-color: transparent;
 
 		font-size: .82em;
 	}
@@ -34,8 +31,11 @@
 		position: absolute;
 		top: 2.5%;
 		height: 12%;
-		width: 22%;
-		font-size: 0.5em;
+		width: 24%;
+
+		font-size: 0.55em;
+		font-family: 'Open Sans', sans-serif;
+
 		padding: 0;
 		border: 0;
 
@@ -57,7 +57,7 @@
 
 	.openTask
 	{
-		left: 28.5%;
+		left: 30%;
 	}
 
 	.assignedTo
@@ -77,7 +77,7 @@
 
 	.deleteTask
 	{
-		left: 53%;
+		left: 55%;
 	}
 
 	&:hover

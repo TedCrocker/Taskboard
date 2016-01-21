@@ -1,4 +1,4 @@
-﻿<div class="story {stateClass}" id="story-{Id}">
+﻿<div class="story {stateClass} commonStyles" id="story-{Id}">
 	<textarea class="content">{content}</textarea>
 	<button class="deleteStory">X</button>
 	<button class="openStory">Open</button>

@@ -1,4 +1,4 @@
-﻿<div class="issue {color} {stateClass}" id="issue-{Id}">
+﻿<div class="issue {color} {stateClass} commonStyles" id="issue-{Id}">
 	<textarea class="content">{content}</textarea>
 	<button class="openIssue">Open</button>
 	<button class="closeIssue">Close</button>

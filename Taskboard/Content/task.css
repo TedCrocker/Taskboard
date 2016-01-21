@@ -14,9 +14,6 @@
     width: 90%;
     height: 70%;
     text-align: center;
-    border: 0;
-    resize: none;
-    background-color: transparent;
     font-size: .82em; }
   .task .deleteTask,
   .task .openTask,
@@ -25,8 +22,9 @@
     position: absolute;
     top: 2.5%;
     height: 12%;
-    width: 22%;
-    font-size: 0.5em;
+    width: 24%;
+    font-size: 0.55em;
+    font-family: 'Open Sans', sans-serif;
     padding: 0;
     border: 0; }
     .task .deleteTask:hover,
@@ -40,7 +38,7 @@
   .task .closeTask {
     left: 5%; }
   .task .openTask {
-    left: 28.5%; }
+    left: 30%; }
   .task .assignedTo {
     position: absolute;
     right: 5%;
@@ -51,9 +49,10 @@
   .task.closed {
     background-image: url(closedTask.png); }
   .task .deleteTask {
-    left: 53%; }
+    left: 55%; }
   .task:hover .deleteTask,
   .task:hover .openTask,
   .task:hover .closeTask {
     display: block; }
 
+/*# sourceMappingURL=task.css.map */
