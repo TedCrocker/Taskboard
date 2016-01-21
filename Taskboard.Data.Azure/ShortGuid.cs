@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Taskboard.Data
+namespace Taskboard.Data.Azure
 {
 	public static class ShortGuid
 	{

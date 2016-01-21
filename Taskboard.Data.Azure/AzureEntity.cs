@@ -4,7 +4,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Newtonsoft.Json;
 
-namespace Taskboard.Data
+namespace Taskboard.Data.Azure
 {
 	public class AzureEntity : ITableEntity
 	{

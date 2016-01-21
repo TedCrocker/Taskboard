@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.StorageClient;
 using NUnit.Framework;
 using Serilog;
-using Taskboard.Data;
+using Taskboard.Data.Azure;
 using Taskboard.Models;
 using CloudStorageAccount = Microsoft.WindowsAzure.CloudStorageAccount;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace Taskboard.Data
+namespace Taskboard.Data.Azure
 {
 	public class ElasticTableItem : DynamicObject, ITableEntity
 	{

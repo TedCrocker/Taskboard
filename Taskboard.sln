@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskboard.Tests", "Taskboar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskboard.Data", "Taskboard.Data\Taskboard.Data.csproj", "{451669A9-FA8A-4AE4-BB5E-12A0A76D91CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskboard.Data.Azure", "Taskboard.Data.Azure\Taskboard.Data.Azure.csproj", "{19DD854D-4A5B-4BE4-AD15-FB8180B99CE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{451669A9-FA8A-4AE4-BB5E-12A0A76D91CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{451669A9-FA8A-4AE4-BB5E-12A0A76D91CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{451669A9-FA8A-4AE4-BB5E-12A0A76D91CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19DD854D-4A5B-4BE4-AD15-FB8180B99CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DD854D-4A5B-4BE4-AD15-FB8180B99CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19DD854D-4A5B-4BE4-AD15-FB8180B99CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19DD854D-4A5B-4BE4-AD15-FB8180B99CE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

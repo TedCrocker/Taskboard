@@ -2,7 +2,11 @@
 /*.user
 /Taskboard/*.user
 /Taskboard/bin/*
+/Taskboard.Data/bin/*
+/Taskboard.Data.Azure/bin/*
 /Taskboard/obj/*
+/Taskboard.Data/obj/*
+/Taskboard.Data.Azure/obj/*
 /Taskboard/node_modules/**
 /Taskboard/wwwroot/**
 /Taskboard.Tests/bin/*

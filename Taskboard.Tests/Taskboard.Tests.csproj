@@ -141,6 +141,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Taskboard.Data.Azure\Taskboard.Data.Azure.csproj">
+      <Project>{19dd854d-4a5b-4be4-ad15-fb8180b99ce7}</Project>
+      <Name>Taskboard.Data.Azure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Taskboard.Data\Taskboard.Data.csproj">
       <Project>{451669a9-fa8a-4ae4-bb5e-12a0a76d91cf}</Project>
       <Name>Taskboard.Data</Name>

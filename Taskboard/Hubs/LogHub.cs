@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Taskboard.Data;
+using Taskboard.Data.Azure;
 using Taskboard.Models;
 
 namespace Taskboard.Hubs

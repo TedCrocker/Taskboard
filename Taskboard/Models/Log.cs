@@ -1,5 +1,7 @@
 ﻿using System;
 using Taskboard.Data;
+using Taskboard.Data.Azure;
+
 
 namespace Taskboard.Models
 {
