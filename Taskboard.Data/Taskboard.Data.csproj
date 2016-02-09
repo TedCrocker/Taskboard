@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Taskboard.Data</RootNamespace>
     <AssemblyName>Taskboard.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,6 +81,14 @@
     <Compile Include="ConfigurationSettings.cs" />
     <Compile Include="IDataRepository.cs" />
     <Compile Include="IUserManager.cs" />
+    <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\Issue.cs" />
+    <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\Story.cs" />
+    <Compile Include="Models\StorySize.cs" />
+    <Compile Include="Models\TaskItem.cs" />
+    <Compile Include="Models\WebObject.cs" />
+    <Compile Include="Models\WorkFlowState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

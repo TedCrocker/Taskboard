@@ -1,6 +1,6 @@
 ﻿using Taskboard.Data;
 using Taskboard.Data.Azure;
-using Taskboard.Models;
+using Taskboard.Data.Models;
 
 namespace Taskboard.Hubs
 {

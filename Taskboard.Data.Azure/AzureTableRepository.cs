@@ -5,10 +5,11 @@ using System.Threading;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Serilog;
+using Taskboard.Data.Models;
 
 namespace Taskboard.Data.Azure
 {
-	public class AzureTableRepository<T> : IDataRepository<T> where T : ITableEntity
+	public class AzureTableRepository<T> : IDataRepository<T> where T : Entity
 	{
 		private readonly CloudTable _table;
 		private static readonly HashSet<T> _entities = new HashSet<T>();
@@ -16,6 +17,7 @@ namespace Taskboard.Data.Azure
 		private readonly Timer _timer;
 		private readonly ISet<T> _entitiesWithPendingUpdates = new HashSet<T>();
 		private readonly ILogger _log;
+		private readonly Type _baseType;
 
 		public AzureTableRepository(ILogger log)
 		{
@@ -24,6 +26,7 @@ namespace Taskboard.Data.Azure
 			var client = storageAccount.CreateCloudTableClient();
 			_table = client.GetTableReference("Tasks");
 			_table.CreateIfNotExists();
+			_baseType = typeof (T);
 
 			_timer = new Timer(ExecuteUpdate, null, TimeSpan.Zero, TimeSpan.FromSeconds(7));
 		} 
@@ -32,7 +35,8 @@ namespace Taskboard.Data.Azure
 		{
 			lock (_lock)
 			{
-				_table.Execute(TableOperation.Insert(entity));
+				var dynamicTableEntity = entity.ConvertToDynamicTableEntity<T>();
+				_table.Execute(TableOperation.Insert(dynamicTableEntity));
 				_entities.Add(entity);
 			}
 		}
@@ -41,9 +45,9 @@ namespace Taskboard.Data.Azure
 		{
 			lock (_lock)
 			{
-				var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
-				_table.Execute(TableOperation.Delete(storedEntity));
-				_entities.RemoveWhere(e => e.RowKey == entity.RowKey);
+				var storedEntity = _entities.First(e => e.Id == entity.Id);
+				_table.Execute(TableOperation.Delete(storedEntity.ConvertToDynamicTableEntity<T>()));
+				_entities.RemoveWhere(e => e.Id == entity.Id);
 			}
 		}
 
@@ -54,7 +58,7 @@ namespace Taskboard.Data.Azure
 				var batch = new TableBatchOperation();
 				foreach (var entity in _entities)
 				{
-					batch.Add(TableOperation.Delete(entity));
+					batch.Add(TableOperation.Delete(entity.ConvertToDynamicTableEntity<T>()));
 				}
 				_table.ExecuteBatch(batch);
 				_entities.Clear();
@@ -68,17 +72,18 @@ namespace Taskboard.Data.Azure
 		public T Get(string id)
 		{
 			var type = typeof (T);
-			T returnValue =  _entitiesWithPendingUpdates.FirstOrDefault(e => e.RowKey == id && e.PartitionKey == type.Name);
-
+			T returnValue = _entitiesWithPendingUpdates.FirstOrDefault(e => e.Id == id);
+			
 			if (returnValue == null)
 			{
-				var result = _table.Execute(TableOperation.Retrieve<T>(type.Name, id));
+				var result = _table.Execute(TableOperation.Retrieve<DynamicTableEntity>(type.Name, id));
 				if (result.HttpStatusCode == 200)
 				{
-					returnValue = (T)Convert.ChangeType(result.Result, type);
+					var tableEntity = (DynamicTableEntity) Convert.ChangeType(result.Result, typeof (DynamicTableEntity));
+					returnValue = tableEntity.ConvertToEntity<T>();
 				}
 			}
-
+			
 			return returnValue;
 		}
 
@@ -86,12 +91,11 @@ namespace Taskboard.Data.Azure
 		{
 			lock (_lock)
 			{
-				var storedEntity = _entities.First(e => e.RowKey == entity.RowKey);
-
-				storedEntity.ReadEntity(entity.WriteEntity(new OperationContext()), new OperationContext());
+				var storedEntity = _entities.First(e => e.Id == entity.Id);
+				
 				try
 				{
-					_entitiesWithPendingUpdates.Add(storedEntity);
+					_entitiesWithPendingUpdates.Add(entity);
 					_updatePending = true;
 				}
 				catch (Exception e)
@@ -111,7 +115,7 @@ namespace Taskboard.Data.Azure
 					var batchOperation = new TableBatchOperation();
 					foreach (var entity in _entitiesWithPendingUpdates)
 					{
-						batchOperation.Add(TableOperation.Merge(entity));
+						batchOperation.Add(TableOperation.Merge(entity.ConvertToDynamicTableEntity<T>()));
 					}
 
 					try
@@ -132,23 +136,17 @@ namespace Taskboard.Data.Azure
 		{
 			var query = new TableQuery().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, typeof (T).Name));
 			EntityResolver<T> resolver = (pk, rk, ts, props, etag) =>
-				{
-					var item = Activator.CreateInstance<T>();
-
-					item.ETag = etag;
-					item.PartitionKey = pk;
-					item.RowKey = rk;
-					item.Timestamp = ts;
-					item.ReadEntity(props, null);
-
-					return item;
-				};
+			{
+				var tableEntity = new DynamicTableEntity(pk, rk, etag, props);
+				return tableEntity.ConvertToEntity<T>();
+			};
 			
 			var queryResults = _table.ExecuteQuery(query, resolver, null, null).ToList<T>();
 
 			foreach (var result in queryResults)
 			{
-				if (!_entities.Contains(result))
+				var haveLoadedEntity = _entities.Any(entity => entity.Id == result.Id);
+				if (!haveLoadedEntity)
 				{
 					_entities.Add(result);
 				}

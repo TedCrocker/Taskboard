@@ -50,3 +50,4 @@ E:\Code\Taskboard\Taskboard.Data\bin\Debug\zh-Hans\System.Spatial.resources.dll
 E:\Code\Taskboard\Taskboard.Data\bin\Debug\zh-Hant\System.Spatial.resources.dll
 E:\Code\Taskboard\Taskboard.Data\obj\Debug\Taskboard.Data.dll
 E:\Code\Taskboard\Taskboard.Data\obj\Debug\Taskboard.Data.pdb
+E:\Code\Taskboard\Taskboard.Data\obj\Debug\Taskboard.Data.csprojResolveAssemblyReference.cache

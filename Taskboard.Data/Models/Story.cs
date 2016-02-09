@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Taskboard.Models
+namespace Taskboard.Data.Models
 {
 	public class Story : WebObject
 	{

@@ -1,10 +1,8 @@
 ﻿using Newtonsoft.Json;
-using Taskboard.Data;
-using Taskboard.Data.Azure;
 
-namespace Taskboard.Models
+namespace Taskboard.Data.Models
 {
-	public class WebObject : AzureEntity
+	public class WebObject : Entity
 	{
 		[JsonProperty("top")]
 		public int Top { get; set; }

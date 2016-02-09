@@ -1,4 +1,4 @@
-﻿namespace Taskboard.Models
+﻿namespace Taskboard.Data.Models
 {
 	public enum StorySize
 	{
