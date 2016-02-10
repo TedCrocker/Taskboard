@@ -91,7 +91,12 @@ namespace Taskboard.Data.Azure
 		{
 			lock (_lock)
 			{
-				var storedEntity = _entities.First(e => e.Id == entity.Id);
+				if (_entities.Any(e => e.Id == entity.Id))
+				{
+					var storedEntity = _entities.First(e => e.Id == entity.Id);
+					_entities.Remove(storedEntity);
+					_entities.Add(entity);
+				}
 				
 				try
 				{
