@@ -46,10 +46,26 @@ namespace Taskboard.Data.Azure
 			foreach (var entityProperty in tableEntity.Properties)
 			{
 				var property = type.GetProperty(entityProperty.Key);
-				property.SetValue(entity, GetValue(entityProperty.Value));
+				var value = GetValue(entityProperty.Value);
+				if (property.PropertyType.IsNullableEnum())
+				{
+					var enumType = Nullable.GetUnderlyingType(property.PropertyType);
+					var obj = (object)Enum.Parse(enumType, value.ToString());
+					property.SetValue(entity, obj);
+				}
+				else
+				{
+					property.SetValue(entity, value);
+				}
 			}
 
 			return entity;
+		}
+
+		private static bool IsNullableEnum(this Type t)
+		{
+			Type u = Nullable.GetUnderlyingType(t);
+			return (u != null) && u.IsEnum;
 		}
 
 		private static object GetValue(EntityProperty property)
@@ -61,7 +77,7 @@ namespace Taskboard.Data.Azure
 				case EdmType.Boolean:
 					return property.BooleanValue;
 				case EdmType.DateTime:
-					return property.DateTimeOffsetValue;
+					return property.DateTime;
 				case EdmType.Double:
 					return property.DoubleValue;
 				case EdmType.Guid:

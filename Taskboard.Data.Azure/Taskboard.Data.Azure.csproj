@@ -79,7 +79,6 @@
   <ItemGroup>
     <Compile Include="AzureEntity.cs" />
     <Compile Include="AzureTableRepository.cs" />
-    <Compile Include="ElasticTableItem.cs" />
     <Compile Include="EntityExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortGuid.cs" />
