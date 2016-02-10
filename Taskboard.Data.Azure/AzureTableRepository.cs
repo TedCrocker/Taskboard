@@ -28,7 +28,7 @@ namespace Taskboard.Data.Azure
 			_table.CreateIfNotExists();
 			_baseType = typeof (T);
 
-			_timer = new Timer(ExecuteUpdate, null, TimeSpan.Zero, TimeSpan.FromSeconds(7));
+			_timer = new Timer(ExecuteUpdate, null, TimeSpan.Zero, TimeSpan.FromSeconds(2));
 		} 
 
 		public void Add(T entity)
@@ -71,12 +71,11 @@ namespace Taskboard.Data.Azure
 
 		public T Get(string id)
 		{
-			var type = typeof (T);
 			T returnValue = _entitiesWithPendingUpdates.FirstOrDefault(e => e.Id == id);
 			
 			if (returnValue == null)
 			{
-				var result = _table.Execute(TableOperation.Retrieve<DynamicTableEntity>(type.Name, id));
+				var result = _table.Execute(TableOperation.Retrieve<DynamicTableEntity>(_baseType.Name, id));
 				if (result.HttpStatusCode == 200)
 				{
 					var tableEntity = (DynamicTableEntity) Convert.ChangeType(result.Result, typeof (DynamicTableEntity));
@@ -94,7 +93,10 @@ namespace Taskboard.Data.Azure
 				if (_entities.Any(e => e.Id == entity.Id))
 				{
 					var storedEntity = _entities.First(e => e.Id == entity.Id);
-					_entities.Remove(storedEntity);
+					entity.CopyPropertiesTo(storedEntity);
+				}
+				else
+				{
 					_entities.Add(entity);
 				}
 				
@@ -139,7 +141,7 @@ namespace Taskboard.Data.Azure
 
 		public IList<T> GetWhere(Func<T, bool> whereCondition)
 		{
-			var query = new TableQuery().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, typeof (T).Name));
+			var query = new TableQuery().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, _baseType.Name));
 			EntityResolver<T> resolver = (pk, rk, ts, props, etag) =>
 			{
 				var tableEntity = new DynamicTableEntity(pk, rk, etag, props);
