@@ -16,6 +16,14 @@
             <param name="name">Setting name.</param>
             <returns>Setting value or null if not found.</returns>
         </member>
+        <member name="M:Microsoft.Azure.CloudConfigurationManager.GetSetting(System.String)">
+            <summary>
+            Gets a setting with the given name. Trace results.
+            </summary>
+            <remarks>This overloaded function is kept for backward compabability.</remarks>
+            <param name="name">Setting name.</param>
+            <returns>Setting value or null if not found.</returns>
+        </member>
         <member name="P:Microsoft.Azure.CloudConfigurationManager.AppSettings">
             <summary>
             Gets application settings.

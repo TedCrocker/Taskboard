@@ -5,7 +5,6 @@ E:\Code\Taskboard\Taskboard.Data\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
 E:\Code\Taskboard\Taskboard.Data\bin\Debug\Microsoft.Data.Edm.dll
 E:\Code\Taskboard\Taskboard.Data\bin\Debug\Microsoft.Data.Services.Client.dll
 E:\Code\Taskboard\Taskboard.Data\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
-E:\Code\Taskboard\Taskboard.Data\bin\Debug\Newtonsoft.Json.dll
 E:\Code\Taskboard\Taskboard.Data\bin\Debug\Serilog.dll
 E:\Code\Taskboard\Taskboard.Data\bin\Debug\Serilog.FullNetFx.dll
 E:\Code\Taskboard\Taskboard.Data\bin\Debug\SimpleInjector.dll
