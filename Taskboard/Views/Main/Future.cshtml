@@ -5,4 +5,10 @@
 
 
 <script src="~/Scripts/thirdparty/system.js"></script>
-<script src="~/Scripts/new/main.js"></script>
+<script>
+	SystemJS.config({
+		baseURL: '/Scripts/new'
+	});
+
+	SystemJS.import('main.js');
+</script>
