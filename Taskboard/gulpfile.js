@@ -24,7 +24,14 @@ var mappings = [
 			{ "src": "jquery-ui/themes/base/images/*", destFolder: "jquery-ui/images" }
 		]
 	},
-	{ "src": "systemjs/dist/system.js", "npm": true }
+	{ "src": "systemjs/dist/system.js", "npm": true },
+	{ "src": "redux/dist/redux.js", "npm": true },
+	{
+		"js": [
+			{ "src": "react/react.js" },
+			{ "src": "react/react-dom.js" }
+		]
+	}
 ];
 
 gulp.task('modernizr', function ()

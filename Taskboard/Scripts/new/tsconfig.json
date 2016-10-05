@@ -9,8 +9,8 @@
 		"allowSyntheticDefaultImports": true,
 		"lib": [ "dom", "es2015" ],
 		"jsx": "react",
-		"module": "system",
-		"moduleResolution": "node"
+		"module": "system"
+	//	"moduleResolution": "node"
 	},
 	"exclude": [
 		"node_modules",

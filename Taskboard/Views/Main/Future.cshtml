@@ -4,11 +4,21 @@
 }
 
 
+<div id="app">
+	
+</div>
+
 <script src="~/Scripts/thirdparty/system.js"></script>
 <script>
 	SystemJS.config({
-		baseURL: '/Scripts/new'
+		baseURL: '/Scripts/',
+		defaultJSExtensions: true,
+		map: {
+			jquery: '/Scripts/thirdparty/jquery.js',
+			react: '/Scripts/thirdparty/react.js',
+			"react-dom": '/Scripts/thirdparty/react-dom.js',
+		}
 	});
 
-	SystemJS.import('main.js');
+	SystemJS.import('new/main.js');
 </script>

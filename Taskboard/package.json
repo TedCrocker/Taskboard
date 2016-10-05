@@ -10,6 +10,8 @@
     "bower": "1.7.2"
   },
   "dependencies": {
+    "react": "^15.3.2",
+    "redux": "^3.6.0",
     "systemjs": "^0.19.39"
   }
 }

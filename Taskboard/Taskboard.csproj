@@ -368,6 +368,9 @@
     <Content Include="Scripts\thirdparty\jquery.signalR.js" />
     <Content Include="Scripts\thirdparty\modernizr.js" />
     <Content Include="Scripts\thirdparty\moment.js" />
+    <Content Include="Scripts\thirdparty\react-dom.js" />
+    <Content Include="Scripts\thirdparty\react.js" />
+    <Content Include="Scripts\thirdparty\redux.js" />
     <Content Include="Scripts\thirdparty\system.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -398,6 +401,10 @@
     <Content Include="Views\Main\Future.cshtml" />
     <Content Include="Scripts\new\typings\globals\jquery\typings.json" />
     <Content Include="Scripts\new\tsconfig.json" />
+    <Content Include="Scripts\new\typings.json" />
+    <Content Include="Scripts\new\typings\globals\react\typings.json" />
+    <Content Include="Scripts\new\typings\globals\redux\typings.json" />
+    <Content Include="Scripts\new\typings\globals\react-dom\typings.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
@@ -420,8 +427,12 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\new\main.ts" />
+    <TypeScriptCompile Include="Scripts\new\Button.tsx" />
+    <TypeScriptCompile Include="Scripts\new\main.tsx" />
     <TypeScriptCompile Include="Scripts\new\typings\globals\jquery\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\new\typings\globals\react-dom\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\new\typings\globals\react\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\new\typings\globals\redux\index.d.ts" />
     <TypeScriptCompile Include="Scripts\new\typings\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
