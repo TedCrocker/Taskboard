@@ -1,12 +1,15 @@
 {
-	"version": "1.0.0",
-	"name": "ASP.NET",
-	"private": true,
-	"devDependencies": {
-		"gulp": "3.9.0",
-		"gulp-rename": "1.2.2",
-		"gulp-modernizr": "1.0.0-alpha",
-		"modernizr": "3.3.1",
-		"bower": "1.7.2"
-	}
+  "version": "1.0.0",
+  "name": "taskboard",
+  "private": true,
+  "devDependencies": {
+    "gulp": "3.9.0",
+    "gulp-rename": "1.2.2",
+    "gulp-modernizr": "1.0.0-alpha",
+    "modernizr": "3.3.1",
+    "bower": "1.7.2"
+  },
+  "dependencies": {
+    "systemjs": "^0.19.39"
+  }
 }

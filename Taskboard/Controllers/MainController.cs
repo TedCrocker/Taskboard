@@ -17,5 +17,11 @@ namespace Taskboard.Controllers
 			ViewBag.DisplayName = _userManager.DisplayName;
 			return View();
 		}
+
+		public ActionResult Future()
+		{
+			ViewBag.DisplayName = _userManager.DisplayName;
+			return View();
+		}
 	}
 }

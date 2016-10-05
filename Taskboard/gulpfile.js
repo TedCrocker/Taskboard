@@ -7,7 +7,8 @@ var gulp = require('gulp');
 var rename = require('gulp-rename');
 var modernizr = require('gulp-modernizr');
 
-var BASE_DIR = "./wwwroot/lib/";
+var BOWER_BASE_DIR = "./wwwroot/lib/";
+var NPM_BASE_DIR = "./node_modules/";
 var JS_DEST = "./Scripts/thirdparty/";
 var CSS_DEST = "./Content/thirdparty/";
 
@@ -22,7 +23,8 @@ var mappings = [
 			{ "src": "jquery-ui/themes/base/*", destFolder: "jquery-ui" },
 			{ "src": "jquery-ui/themes/base/images/*", destFolder: "jquery-ui/images" }
 		]
-	}
+	},
+	{ "src": "systemjs/dist/system.js", "npm": true }
 ];
 
 gulp.task('modernizr', function ()
@@ -33,9 +35,8 @@ gulp.task('modernizr', function ()
 });
 
 gulp.task('default', function () {
-	
-	function copyFile(mapping, destination) {
-		var g = gulp.src(BASE_DIR + mapping.src);
+	function copyFile(mapping, destination, baseDir) {
+		var g = gulp.src(baseDir + mapping.src);
 		if (mapping.destName) {
 			g = g.pipe(rename(mapping.destName));
 		}
@@ -48,19 +49,26 @@ gulp.task('default', function () {
 		g.pipe(gulp.dest(dest));
 	}
 
-	mappings.forEach(function (mapping) {
+	mappings.forEach(function (mapping)
+	{
+		var baseDir = BOWER_BASE_DIR;
+		if (mapping.npm)
+		{
+			baseDir = NPM_BASE_DIR;
+		}
+
 		if (mapping.src) {
-			copyFile(mapping, JS_DEST);
+			copyFile(mapping, JS_DEST, baseDir);
 		}
 		else {
 			if (mapping.js) {
 				mapping.js.forEach(function (jsMapping) {
-					copyFile(jsMapping, JS_DEST);
+					copyFile(jsMapping, JS_DEST, baseDir);
 				});
 			}
 			if (mapping.css) {
 				mapping.css.forEach(function (cssMapping) {
-					copyFile(cssMapping, CSS_DEST);
+					copyFile(cssMapping, CSS_DEST, baseDir);
 				});
 			}
 		}
