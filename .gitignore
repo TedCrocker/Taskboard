@@ -5,6 +5,7 @@
 /Taskboard.Data/bin/*
 /Taskboard.Data.Azure/bin/*
 /Taskboard/obj/*
+/Taskboard/Scripts/new/**/*.js*
 /Taskboard.Data/obj/*
 /Taskboard.Data.Azure/obj/*
 /Taskboard/node_modules/**

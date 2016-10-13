@@ -4,6 +4,7 @@
     "jquery": "registry:dt/jquery#1.10.0+20160929162922",
     "react": "registry:dt/react#0.14.0+20160927082313",
     "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
     "redux": "registry:dt/redux#3.5.2+20160703092728"
   }
 }

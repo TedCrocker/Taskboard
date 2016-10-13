@@ -26,6 +26,7 @@ var mappings = [
 	},
 	{ "src": "systemjs/dist/system.js", "npm": true },
 	{ "src": "redux/dist/redux.js", "npm": true },
+	{ "src": "react-redux/dist/react-redux.js", "npm": true },
 	{
 		"js": [
 			{ "src": "react/react.js" },

@@ -405,6 +405,7 @@
     <Content Include="Scripts\new\typings\globals\react\typings.json" />
     <Content Include="Scripts\new\typings\globals\redux\typings.json" />
     <Content Include="Scripts\new\typings\globals\react-dom\typings.json" />
+    <Content Include="Scripts\new\typings\globals\react-redux\typings.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
@@ -427,10 +428,17 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\new\Button.tsx" />
-    <TypeScriptCompile Include="Scripts\new\main.tsx" />
+    <TypeScriptCompile Include="Scripts\new\actions\actions.ts" />
+    <TypeScriptCompile Include="Scripts\new\actions\actionTypes.ts" />
+    <TypeScriptCompile Include="Scripts\new\components\Button.tsx" />
+    <TypeScriptCompile Include="Scripts\new\app.tsx" />
+    <TypeScriptCompile Include="Scripts\new\components\IDraggable.ts" />
+    <TypeScriptCompile Include="Scripts\new\components\Task.tsx" />
+    <TypeScriptCompile Include="Scripts\new\reducers\reducers.ts" />
+    <TypeScriptCompile Include="Scripts\new\Taskboard.tsx" />
     <TypeScriptCompile Include="Scripts\new\typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="Scripts\new\typings\globals\react-dom\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\new\typings\globals\react-redux\index.d.ts" />
     <TypeScriptCompile Include="Scripts\new\typings\globals\react\index.d.ts" />
     <TypeScriptCompile Include="Scripts\new\typings\globals\redux\index.d.ts" />
     <TypeScriptCompile Include="Scripts\new\typings\index.d.ts" />
